@@ -1,0 +1,20 @@
+vues inscription 
+vues connexion
+vue accueil client
+vue admin (gestion d'utilisateurs)
+vue nav 
+vue form ajout fichier
+vue salle d'attente
+
+index
+controller fichiers
+controller utilisateur (connexions, droits...)
+controller admin (admin gère les utilisateurs et droits)
+
+
+class
+- BDD
+- ajout/sup fichier
+- récupe fichier
+- utilisateur (connexion, inscription)
+- admin
