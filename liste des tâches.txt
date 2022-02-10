@@ -1,20 +1,21 @@
-vues inscription 
-vues connexion
-vue accueil client
-vue admin (gestion d'utilisateurs)
-vue nav 
-vue form ajout fichier
-vue salle d'attente
+vues inscription  						jojo
+vues connexion							val
+vue accueil client						tom
+vue admin (gestion d'utilisateurs)				tom
+vue nav 							rich
+vue form ajout fichier						tom
+vue salle d'attente						val
 
 index
-controller fichiers
-controller utilisateur (connexions, droits...)
-controller admin (admin gère les utilisateurs et droits)
+controller fichiers						Kev
+controller utilisateur (connexions, droits...)			Shanna
+controller admin (admin gère les utilisateurs et droits)	jojo
 
 
 class
-- BDD
-- ajout/sup fichier
-- récupe fichier
-- utilisateur (connexion, inscription)
-- admin
+- BDD				
+- fichier							kev
+- utilisateur (connexion, inscription)				rich
+- admin								tom
+
+BDD								Shanna
