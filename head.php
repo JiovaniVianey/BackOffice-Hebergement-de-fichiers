@@ -2,7 +2,12 @@
 <html lang="fr">
 
   <head>
+    <!-- style css -->
+    <link rel="stylesheet" href="../style/style.css">
 
+    <!-- font awesome icon -->
+    <script src="https://kit.fontawesome.com/de904273ab.js" crossorigin="anonymous"></script>
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

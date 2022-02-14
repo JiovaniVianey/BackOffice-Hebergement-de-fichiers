@@ -1,0 +1,55 @@
+
+/* Accueil utilisateur tom */
+body
+{
+    background-color: rgb(241, 240, 240);
+
+}
+
+.basic-color
+{
+    color: #33CCFF;
+}
+
+.wrapper
+{
+    margin-left: 10% ;
+    margin-right: 10%;
+    width: 80%;
+    background-color: rgb(247, 247, 247);
+    box-shadow: 0 0 10px grey;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card-fichier
+{
+    width: 300px;
+    height: 260px;
+    margin: 15px;
+    box-shadow: 1px 3px 10px  gray;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-sizing: border-box;
+
+}
+
+.card-fichier-text
+{
+    padding: 1px;
+    margin: 0;
+    margin-left: 10px;
+
+}
+
+.fichier-img
+{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20% ;
+}
