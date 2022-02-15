@@ -5,6 +5,7 @@ vue admin (gestion d'utilisateurs)				tom
 vue nav 							rich
 vue form ajout fichier						tom
 vue salle d'attente						val
+vue add/del fichier
 
 index
 controller fichiers						Kev
