@@ -1,30 +1,41 @@
+<!doctype html>
+
 <?php
-include "../head.php";
-include "../navbar.php";
+    include("../head.php");
 ?>
 
-<link rel="stylesheet" href="../style/styleInscription.css">
-<br><br>
+<html>
+	<head>
+		<title>Inscription</title>
+		<meta charset='utf-8'>
+		<link rel='stylesheet' href='../style/styleInscription.css'>
+	</head>
 
-<div class="container-sm">
-  <form action="index.php?action=seConnecter&option=seConnecter" method="POST">
+	<header>
+        <h1>MyFile.com</h1>
+  </header>
 
-  <div class="container">
-  
-    <h3> <b>Inscription</b> <h3>
-    <hr>
-    <label for="identifiant"> <h4> <b>Identifiant</b> </h4> </label>
-    <input type="text" class="form-control" placeholder="Entrez votre identifiant" name="login" id="login" required >
-  
+  <br>
+  <br>
 
-    <label for="mdp"><h4><b>Mot de passe</b></h4></label>
-    <input type="password" class="form-control" placeholder="Entrez votre mot de passe" name="mdp" id="mdp">
-    <label for="mdp"><h4><b>Confirmez votre Mot de passe</b></h4></label>
-    <input type="password" class="form-control" placeholder="Entrez votre mot de passe" name="checkmdp" id="checkmdp">
-        
-    <button type="submit" name="valider" >S'inscrire</button>
-  </div>
-</form>
-</div>
+	<body>
+      <form class="box" method="POST" action="inscription.php">
+      <h2>Inscription</h2>
+      
+      <hr>
+      
+      <label for="identifiant"> <h6> <b>E-mail</b> </h6> </label>
+      <input type='email' name='mail' placeholder="E-mail" required="">
+      
+      <label for="mdp"> <h6> <b>Mot de Passe</b> </h6> </label>
+      <input type='password' name='mdp' placeholder="Mot de Passe" required="">
 
-<br><br><br><br>
+      <label for="mdp"> <h6> <b>Confirmez votre Mot de Passe</b> </h6> </label>
+      <input type='password' name='mdp2' placeholder="Mot de Passe" required="">
+
+      <input type="submit" value="S'inscrire"/>
+
+      </form>
+	</body>
+
+</html>
