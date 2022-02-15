@@ -23,8 +23,14 @@
       <h2>Inscription</h2>
       
       <hr>
+
+      <label for="identifiant"> <h6> <b>Nom</b> </h6> </label>
+      <input type='text' name='nom' placeholder="Identifiant" required="">
+
+      <label for="identifiant"> <h6> <b>Prénom</b> </h6> </label>
+      <input type='text' name='prénom' placeholder="Identifiant" required="">
       
-      <label for="identifiant"> <h6> <b>E-mail</b> </h6> </label>
+      <label for="mail"> <h6> <b>E-mail</b> </h6> </label>
       <input type='email' name='mail' placeholder="E-mail" required="">
       
       <label for="mdp"> <h6> <b>Mot de Passe</b> </h6> </label>
