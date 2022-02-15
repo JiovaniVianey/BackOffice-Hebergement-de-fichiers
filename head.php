@@ -5,6 +5,7 @@
     <!-- style css -->
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/styleaccueil.css">
+    <link rel="stylesheet" href="../style/stylelisteutilisateurs.css">
 
     <!-- font awesome icon -->
     <script src="https://kit.fontawesome.com/de904273ab.js" crossorigin="anonymous"></script>
