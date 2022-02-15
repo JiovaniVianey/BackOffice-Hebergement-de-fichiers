@@ -1,22 +1,18 @@
 <!doctype html>
 <html>
 	<head>
-		<title>WebSite</title>
+		<title>Connexion</title>
 		<meta charset='utf-8'>
-		<link rel='stylesheet' href='style.css'>
+		<link rel='stylesheet' href='../style/styleConnexion.css'>
 	</head>
 	<body>
 		
 		<form class="box" method="POST" action="login.html">
-		<h1>LOGIN</h1>
-		 <input type='text' name='pseudo' placeholder="Username" required="">
-		<input type='password' name='pseudo' placeholder="Password" required="">
+		<h2>Connexion</h2>
+		<input type='text' name='pseudo' placeholder="Login" required="">
+		<input type='password' name='pseudo' placeholder="Mot de Passe" required="">
 		
-		
-		
-		
-		
-		<input type="submit" value="Login"/>
+		<input type="submit" value="Se Connecter"/>
 		</form>
 	</body>
 </html>	
