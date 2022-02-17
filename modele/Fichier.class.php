@@ -7,6 +7,7 @@ class Fichier{
     private $taille;
     private $type;
 
+
 //GETTER
 function getId() {
     return $this->id;
@@ -116,5 +117,14 @@ public static function supprimer(Fichier $fichier){
     $id=$fichier->getId();
     $req->bindParam('id',$id);
     $nb=$req->execute();
+}
+public static function afficherParIdutil(){
+    $util=$_GET["afficher"] ;
+	
+    $req=MonPdo::getInstance()->prepare("select*from fichier where idutil='%$util%'");
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'fichier');
+    $req->execute();
+    $lesResultats=$req->fetchAll();
+    return $lesResultats;
 }
 ?>
