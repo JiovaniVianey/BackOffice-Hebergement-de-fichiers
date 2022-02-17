@@ -25,7 +25,7 @@ function getIdutil() {
 
 
 function getChemin(){
-    return $this->photo;
+    return $this->chemin;
 }
 
 
@@ -118,8 +118,8 @@ public static function supprimer(Fichier $fichier){
     $req->bindParam('id',$id);
     $nb=$req->execute();
 }
-public static function afficherParIdutil(){
-    $util=$_GET["afficher"] ;
+public static function afficherParIdutil($p){
+    $util=$p ;
 	
     $req=MonPdo::getInstance()->prepare("select*from fichier where idutil='%$util%'");
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'fichier');
