@@ -1,4 +1,6 @@
 <?php
+switch($fich){
+case "ajouter" :
     //test du submit
     if (isset($_POST['submit']))
     {
@@ -44,4 +46,6 @@
     // Fichier::ajouter($fichier);
     // $lesProduits=Produit::afficherTous();
     include("vue/fichiers_vue.php") ;
+    break;
+}
 ?>

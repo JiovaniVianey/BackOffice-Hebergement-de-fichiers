@@ -7,6 +7,7 @@ class Fichier{
     private $taille;
     private $type;
 
+
 //GETTER
 function getId() {
     return $this->id;
@@ -126,3 +127,4 @@ public static function afficherParIdutil(){
     $lesResultats=$req->fetchAll();
     return $lesResultats;
 }
+?>
