@@ -18,58 +18,20 @@ use function PHPSTORM_META\type;
             </form>
         </nav>
         <div class="card-fichier">
-            <img class="fichier-img my-2" src="../images/fileicon.png" alt="icon de fichier">
-            <div class="row">
-                <div class="col-md-9">
-                    <h3 class="card-fichier-text">Nom du fichier</h3>
-                    <p class="card-fichier-text">Auteur du fichier</p>
-                    <span class="card-fichier-text">date du fichier</span>
-                    <p class="card-fichier-text">taille du fichier</p>
+                    <img class="fichier-img my-2" src="../images/fileicon.png" alt="icon de fichier">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h3 class="card-fichier-text">exemple fichier</h3>
+                            <span class="card-fichier-text">date</span>
+                            <p class="card-fichier-text">taille fichier</p>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-center justify-content-center flex-column">
+                            <a href=""></a> <span class="py-auto fa-solid fa-download fa-2x basic-color"></span></a>
+                            <a href=""></a> <span class="fa-solid fa-trash fa-2x" style="color: #c56d6d;"></span></a>
+                        </div>
+                    </div>  
                 </div>
-                <div class="col-md-2 d-flex align-items-center ">
-                    <a href=""></a> <span class="py-auto fa-solid fa-download fa-3x basic-color"></span></a>
-                </div>
-            </div>  
-        </div>
-        <div class="card-fichier">
-            <img class="fichier-img my-2" src="../images/fileicon.png" alt="icon de fichier">
-            <div class="row">
-                <div class="col-md-9">
-                    <h3 class="card-fichier-text">Nom du fichier</h3>
-                    <p class="card-fichier-text">Auteur du fichier</p>
-                    <span class="card-fichier-text">date du fichier</span>
-                    <p class="card-fichier-text">taille du fichier</p>
-                </div>
-                <div class="col-md-2 d-flex align-items-center ">
-                    <a href=""></a> <span class="py-auto fa-solid fa-download fa-3x basic-color"></span></a>
-                </div>
-            </div>  
-        </div>
-        <div class="card-fichier">
-            <img class="fichier-img my-2" src="../images/imageicon.png" alt="icon de fichier">
-            <div class="row">
-                <div class="col-md-9">
-                    <h3 class="card-fichier-text">Nom du fichier</h3>
-                    <p class="card-fichier-text">Auteur du fichier</p>
-                    <span class="card-fichier-text">date du fichier</span>
-                    <p class="card-fichier-text">taille du fichier</p>
-                </div>
-                <div class="col-md-2 d-flex align-items-center ">
-                    <a href=""></a> <span class="py-auto fa-solid fa-download fa-3x basic-color"></span></a>
-                </div>
-            </div>  
-        </div>
-        
-        <div class="card-fichier">
-            <a class="mx-auto my-auto" href="" data-msg="Ajouter un fichier">
-                <span class="fa-solid fa-plus fa-7x basic-color plus"></span> 
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- à réécrire -->
-<?php
+        <?php
         foreach ($lesFichiers as $fichier)
         {
             ?>
@@ -91,13 +53,19 @@ use function PHPSTORM_META\type;
             <?php
         }
 ?>
-
-<!-- Button trigger modal -->
-<button type="button" class="card-fichier" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:white; border:none">
+        <button type="button" class="card-fichier" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:white; border:none">
             <div class="mx-auto my-auto" href="" data-msg="Ajouter un fichier">
                 <span class="fa-solid fa-plus fa-7x basic-color plus"></span> 
             </div>
 </button>
+    </div>
+</div>
+
+<!-- à réécrire -->
+
+
+<!-- Button trigger modal -->
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

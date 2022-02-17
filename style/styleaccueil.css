@@ -122,6 +122,11 @@ header a:hover
     justify-content: space-around;
 }
 
+.card-fichier a
+{
+    padding: 5px;
+}
+
 .fichiers-section a
 {
     text-decoration: none;
