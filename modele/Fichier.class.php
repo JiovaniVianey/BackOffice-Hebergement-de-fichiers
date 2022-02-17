@@ -118,3 +118,4 @@ public static function supprimer(Fichier $fichier){
     $req->bindParam('id',$id);
     $nb=$req->execute();
 }
+?>
