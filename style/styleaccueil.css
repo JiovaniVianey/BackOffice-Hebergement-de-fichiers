@@ -193,3 +193,11 @@ header a:hover
 
     opacity: 0.5;
 }
+
+.valide-btn
+{
+    padding: 3px;
+    border-radius: 5px;
+    background-color: white;
+    border: solid #0099cc 2px;
+}

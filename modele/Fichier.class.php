@@ -7,7 +7,6 @@ class Fichier{
     private $taille;
     private $type;
 
-
 //GETTER
 function getId() {
     return $this->id;
