@@ -21,13 +21,13 @@ switch($uc)
     break;
 
     case "admin" :
-        include("controleurs/controlleurAdmin.php");
+        include("controller/controllerAdmin.php");
     break;
     case "fichier" :
-        include("controleurs/controlleurFichier.php");
+        include("controller/controllerFichier.php");
     break;
     case "utilisateur" :
-        include("controleurs/controlleurUtilisateur.php");
+        include("controller/controllerUtilisateur.php");
     break;
    
         
