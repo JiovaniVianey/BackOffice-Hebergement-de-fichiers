@@ -13,6 +13,9 @@
 		<input type='password' name='pseudo' placeholder="Mot de Passe" required="">
 		
 		<input type="submit" value="Se Connecter"/>
+
+		<a href="url">Mot de passe oublié ? </a>
+
 		</form>
 	</body>
 </html>	
