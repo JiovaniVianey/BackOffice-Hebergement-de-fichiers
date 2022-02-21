@@ -1,6 +1,6 @@
 <?php
 
-$action = $_GET["action"] ;
+$action = $_GET["admin"] ;
 
     switch($action){
         case "autorlecture":

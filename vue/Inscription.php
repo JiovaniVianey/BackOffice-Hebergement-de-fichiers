@@ -13,10 +13,10 @@
 
 	<header>
         <h1>MyFile.com</h1>
-  </header>
+      </header>
 
-  <br>
-  <br>
+      <br>
+      <br>
 
 	<body>
       <form class="box" method="POST" action="inscription.php">
