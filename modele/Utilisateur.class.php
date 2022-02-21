@@ -175,9 +175,9 @@ class Utilisateur
   }
 
   public static function trouverUtilisateurparMail($mail){
-    $req=MonPdo::getInstance()->prepare("select mail from utilisateur where email=:email");
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where mail=:mail");
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
-    $req->bindParam('email',$mail);
+    $req->bindParam('mail',$mail);
     $req->execute();
     $leResultat=$req->fetch();
     return $leResultat;

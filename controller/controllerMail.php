@@ -49,25 +49,25 @@ $reqMail = choixMail($_POST["mail"]);
             // Corps du Mail (HTML)
             $envoi_mail->isHTML(true);
 
-            $body = "<b> <font size=\"3\"> Immeuble 6 Place Jean Giraudoux, 94000 Créteil </font> </b>";
+            $body = "<b> <font size=\"3\"> Bonjour, ".$utilisateur->getNom()." </font> </b>";
             $body .= "<p> <font size=\"2\"> Information: <hr>".$texte."</font> </p>";
             $body .= "<hr> Cordialement, <br>";
             $body .= "<i> Votre ".$nomContact."</i>";
 
             // Corps du Mail (Non HTML)
-            $text_body  = "Immeuble 6 Place Jean Giraudoux, 94000 Créteil \n\n";
+            $text_body  = "Bonjour \n\n";
             $text_body .= "Information: \n\n".$texte." \n\n";
             $text_body .= "Cordialement, \n";
             $text_body .= "Votre ".$nomContact;
             break;
         case "NotifInscrit":
             // Objet du Mail
-            $envoi_mail->Subject = 'Réinitialisation de Mot De Passe';
+            $envoi_mail->Subject = 'Nouvel Inscription';
 
             // Corps du Mail (HTML)
             $envoi_mail->isHTML(true);
 
-            $body = "<b> <font size=\"3\"> Immeuble 6 Place Jean Giraudoux, 94000 Créteil </font> </b>";
+            $body = "<b> <font size=\"3\"> Vous avez un nouvel inscrit </font> </b>";
             $body .= "<p> <font size=\"2\"> Information: <hr>".$texte."</font> </p>";
             $body .= "<hr> Cordialement, <br>";
             $body .= "<i> Votre ".$nomContact."</i>";
