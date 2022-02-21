@@ -3,8 +3,9 @@
 $action = $_GET["util"] ;
 
     switch($action){
-        case "autorlecture":
-            Utilisateur::;
+        case "MailEnvoiMDP":
+            Utilisateur::trouverUtilisateurparMail($_POST["mail"]);
+            
             break;
     }
 ?>
