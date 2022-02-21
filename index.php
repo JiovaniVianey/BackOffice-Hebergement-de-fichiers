@@ -29,8 +29,6 @@ switch($uc)
     case "utilisateur" :
         include("controller/controllerUtilisateur.php");
     break;
-   
-        
 }
 
 

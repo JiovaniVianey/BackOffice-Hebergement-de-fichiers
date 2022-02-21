@@ -1,5 +1,5 @@
 <?php
-class Fichier{
+/*class Fichier{
     private $id;
     private $nom;
     private $idutil;
@@ -127,5 +127,5 @@ public static function afficherParIdutil($p){
     $lesResultats=$req->fetchAll();
     return $lesResultats;
 }
-
+*/
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-$action = $_GET["util"] ;
+$action = $_GET["action"] ;
 
     switch($action){
         case "MailEnvoiMDP":
