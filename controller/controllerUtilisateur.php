@@ -13,14 +13,14 @@ $action = $_GET["action"] ;
                 exit;
             }
 
-            $res = Utilisateur::trouverUtilisateurparMail($_POST["mail"]);
+            $res = utilisateur::trouverUtilisateurparMail($_POST["mail"]);
             if ($res->num_rows == 0) {
                 $_SESSION['messageerror'] = "Email Non Enregistré";
                 include("vue/FormMdpOublie.php");
             }
             else
             {
-                $token = Utilisateur::genererToken();
+                $token = utilisateur::genererToken();
                 Utilisateur::changerToken($_POST["mail"],$token);
                 include("controllerMail.php?action=MdpOublie");
                 include("vue/FormMdpOublie.php");
