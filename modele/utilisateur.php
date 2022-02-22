@@ -12,25 +12,27 @@ class Utilisateur
   private $droit_supprimer;
 
 
-  public function _construct($prenom,$nom,$mail,$mdp,$admin,$autoriser,$droit_ajouter,$droit_supprimer){
-    $this->$prenom=$prenom;
-    $this->$nom=$nom;
-    $this->$mail=$mail;
-    $this->$mdp=$mdp;
-    $this->$admin = false;
-    $this->$autoriser = false;
+  public function _construct($id,$prenom,$nom,$mail,$mdp,$admin,$autoriser,$droit_ajouter,$droit_supprimer){
+    $this->id=$id;
+    $this->prenom=$prenom;
+    $this->nom=$nom;
+    $this->mail=$mail;
+    $this->mdp=$mdp;
+    $this->admin = false;
+    $this->autoriser = false;
     $this->droit_ajouter = false;
     $this->droit_supprimer = false;
   }
 
+
   // ID
   public function getId(){
-    return $this->$id;
+    return $this->id;
   }
 
   // PRENOM
   public function getPrenom(){
-    return $this->$prenom;
+    return $this->prenom;
   }
   public function setPrenom($prenom){
     $this->prenom = $prenom;
@@ -38,7 +40,7 @@ class Utilisateur
 
   // NOM
   public function getNom(){
-    return $this->$nomUser;
+    return $this->nomUser;
   }
   public function setLogin($nom){
     $this->nom = $nom;
@@ -46,12 +48,12 @@ class Utilisateur
 
   // MAIL
   public function getMail(){
-    return $this->$mail;
+    return $this->mail;
   }
 
   //MOT DE PASSE
   public function getMdp(){
-    return $this->$mdp;
+    return $this->mdp;
   }
   public function setMdp($nvMdp){
     $this->mdp = $nvMdp;
@@ -59,7 +61,7 @@ class Utilisateur
 
   // ADMIN
   public function getAdmin(){
-    return $this->$admin;
+    return $this->admin;
   }
   public function setAdmin($nvAdmin){
     $this->admin =$nvAdmin;
@@ -67,7 +69,7 @@ class Utilisateur
 
   // AUTORISATION
   public function getAutoriser(){
-    return $this->$autoriser;
+    return $this->autoriser;
   }
   public function setAutoriser($autoriser){
     return $this->autoriser = $autoriser;
@@ -75,23 +77,23 @@ class Utilisateur
 
   // DROIT_AJOUTER
   public function getDroit_ajouter(){
-    return $this->$droit_modif;
+    return $this->droit_modif;
   }
 
   // DROIT_SUPPRIMER
   public function getDroit_supprimer(){
-    return $this->$droit_modif;
+    return $this->droit_modif;
   }
 
 
   public static function ajouterUtilisateur(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mail) values(:prenom,:nom,:mail) ");
     $prenom=$utilisateur->getPrenom();
-    $req->bindParam('prenom',$prenom);
+    $req->bindParam(':prenom',$prenom);
     $nom=$utilisateur->getNom();
-    $req->bindParam('nom',$nom);
+    $req->bindParam(':nom',$nom);
     $mail=$utilisateur->getMail();
-    $req->bindParam('mail',$mail);
+    $req->bindParam(':mail',$mail);
     $req->execute();
   }
 
@@ -99,51 +101,52 @@ class Utilisateur
   public static function supprimerUtilisateur(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("delete from utilisateur where id=:id ");
     $id=$utilisateur->getId();
-    $req->bindParam('id', $id);
+    $req->bindParam(':id', $id);
     $req->execute();
   }
 
   public static function changerMdp(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set mdp = :mdp where id=:id");
     $mdp=$utilisateur->getMdp();
-    $req->bindParam('mdp',$mdp);
+    $req->bindParam(':mdp',$mdp);
     $id=$utilisateur->getId();
-    $req->bindParam('id',$id);
+    $req->bindParam(':id',$id);
     $req->execute();
   }
 
   public static function changeAutorisation(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set autoriser= :autoriser where id=:id"); //il faudra voir bdd
     $autoriser=$utilisateur->getAutoriser();
-    $req->bindParam('autoriser',$autoriser);
-    $id=$utilisateur->getId('id',$id);
+    $req->bindParam(':autoriser',$autoriser);
+    $id=$utilisateur->getId();
+    $req->bindParam(':id', $id);
     $req->execute();
   }
 
   public static function changeAdmin(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set admin = :admin where id=:id");     // il faudra voir avec la base de données
     $admin=$utilisateur->getAdmin();
-    $req->bindParam('admin',$admin);
+    $req->bindParam(':admin',$admin);
     $id=$utilisateur->getId();
-    $req->bindParam('id',$id);
+    $req->bindParam(':id',$id);
     $req->execute();
   }
 
   public static function changeDroit_ajouter(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set droit_ajouter= :droit_ajouter where id=:id");   // il faudra voir avec la base de données
     $droit_ajouter=$utilisateur->getDroit_ajouter();
-    $req->bindParam('droit_ajouter',$droit_ajouter);
+    $req->bindParam(':droit_ajouter',$droit_ajouter);
     $id=$utilisateur->getId();
-    $req->bindParam('id',$id);
+    $req->bindParam(':id',$id);
     $req->execute();
   }
 
   public static function changeDroit_supprimer(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set droit_supprimer= :droit_supprimer where id=:id");   // il faudra voir avec la base de données
     $droit_supprimer=$utilisateur->getDroit_supprimer();
-    $req->bindParam('droit_supprimer',$droit_supprimer);
+    $req->bindParam(':droit_supprimer',$droit_supprimer);
     $id=$utilisateur->getId();
-    $req->bindParam('id',$id);
+    $req->bindParam(':id',$id);
     $req->execute();
   }
 
@@ -168,11 +171,19 @@ class Utilisateur
   public static function trouverUtilisateur($id){
     $req=MonPdo::getInstance()->prepare("select * from utilisateur where id=:id");
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
-    $req->bindParam('id',$id);
+    $req->bindParam(':id',$id);
+    $req->execute();
+    $leResultat=$req->fetch();
+    return $leResultat;
+  }
+
+  public static function trouverUtilisateurparMail($mail){
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where mail=:mail");
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+    $req->bindParam(':mail',$mail);
     $req->execute();
     $leResultat=$req->fetch();
     return $leResultat;
   }
 }
-
  ?>
