@@ -208,7 +208,7 @@ class Utilisateur
 
   // Token Aléatoire
 
-	function genererToken(
+	public static function genererToken(
 		int $length = 64,
 		string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	): string {

@@ -1,6 +1,6 @@
 <?php
 
-$action = $_GET["action"];
+$mailaction = $_GET["action"];
 $email = "service.myfile@gmail.com";
 $mdpmail = "eh-8dXC2_bh!(jPK";
 

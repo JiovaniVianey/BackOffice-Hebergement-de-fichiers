@@ -13,7 +13,7 @@
 
 	<header>
         <h1>MyFile.com</h1>
-      </header>
+    </header>
 
 	<br>
 	<br>
