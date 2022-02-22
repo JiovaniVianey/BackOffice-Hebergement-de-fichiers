@@ -23,12 +23,10 @@ $envoi_mail->SMTPAuth = true;
 
 //Mot de Passe et adresse e-mail (Gmail) 
 $envoi_mail->Username = $email;
-
-$mdpmail = choixMdp($email);
 $envoi_mail->Password = $mdpmail;
 
 $envoi_mail->SMTPDebug = 0;
-//$mail->debugoutput = 'html';
+//$envoi_mail->debugoutput = 'html';
 
 $mailExpediteur = trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));
 $objet = trim(filter_input(INPUT_POST, "objet", FILTER_SANITIZE_STRING, FILTER_SANITIZE_ENCODED));
@@ -36,7 +34,7 @@ $message = trim(filter_input(INPUT_POST, "message", FILTER_SANITIZE_STRING, FILT
 
 // Expéditeur
 $mailContact = $email;
-$envoi_mail->setFrom($mailContact);
+$envoi_mail->setFrom("MyFile.com");
 
 // Destinataire(s)
 $reqMail = choixMail($_POST["mail"]);
@@ -50,13 +48,13 @@ $reqMail = choixMail($_POST["mail"]);
             $envoi_mail->isHTML(true);
 
             $body = "<b> <font size=\"3\"> Bonjour, ".$res->getNom()." ".$res->getPrenom()." </font> </b>";
-            $body .= "<p> <font size=\"2\"> Cliquez ici afin de réinitiailiser votre Mot de passe: </font> </p>";
-            $body .= "<hr> ";
+            $body .= "<p> <font size=\"2\"> Afin de réinitiailiser votre Mot de passe: </font> </p>";
+            $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/vue/FormChangementMdp.php?token=".$token."'> Cliquez ici </a>";
 
             // Corps du Mail (Non HTML)
             $text_body  = "Bonjour, ".$res->getNom()." ".$res->getPrenom()." \n\n";
             $text_body .= "Cliquez ici afin de réinitiailiser votre Mot de passe: \n\n";
-            $text_body .= " ";
+            $text_body .= "http://127.0.0.1/projet-fichier-administration/vue/FormChangementMdp.php?token=".$token."";
             break;
         /*case "NotifInscrit":
             // Objet du Mail

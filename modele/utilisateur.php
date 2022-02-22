@@ -187,7 +187,7 @@ class Utilisateur
   }
 
   function getDossiers()
-{
+  {
     //la requète récupe les info de chaque user pr les lignes
     $sql =  'SELECT utilisateur.id , utilisateur.prenom, utilisateur.nom, utilisateur.mail, utilisateur.ip, utilisateur.droit_ajout, utilsateur.droit_suppression
     FROM fichier JOIN utilisateur on utilisateur.id=fichier.idUtilisateur
@@ -196,6 +196,33 @@ class Utilisateur
     $result = MonPdo::getInstance()->query($sql);
     $lesDossiers = $result->fetchAll();
     return $lesDossiers;
-}
+  }
+
+  // Token Aléatoire
+
+	function genererToken(
+		int $length = 64,
+		string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	): string {
+		if ($length < 1) {
+			throw new \RangeException("Length must be a positive integer");
+		}
+		$pieces = [];
+		$max = mb_strlen($keyspace, '8bit') - 1;
+		for ($i = 0; $i < $length; ++$i) {
+			$pieces []= $keyspace[random_int(0, $max)];
+		}
+		return implode('', $pieces);
+	}
+
+  // Maj Token
+
+  public static function changerToken($token,$mail){
+    $req=MonPdo::getInstance()->prepare("update utilisateur set token = MD5(:token) where mail=:mail");
+    $req->bindParam(':token',$token);
+    $req->bindParam(':mail',$mail);
+    $req->execute();
+  }
+
 }
  ?>

@@ -20,6 +20,8 @@ $action = $_GET["action"] ;
             }
             else
             {
+                $token = Utilisateur::genererToken();
+                Utilisateur::changerToken($_POST["mail"],$token);
                 include("controllerMail.php?action=MdpOublie");
                 include("vue/FormMdpOublie.php");
             }
