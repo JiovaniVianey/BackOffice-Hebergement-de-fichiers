@@ -1,5 +1,5 @@
 <?php
-/*class Fichier{
+class Fichier{
     private $id;
     private $nom;
     private $idutil;
@@ -56,7 +56,7 @@ function setChemin($chemin){
 function setTaille($taille){
     $this->taille = $taille;
 }
-function setChemin($type){
+function setType($type){
     $this->type = $type;
 }
 public static function afficherTous(){
@@ -118,6 +118,8 @@ public static function supprimer(Fichier $fichier){
     $req->bindParam('id',$id);
     $nb=$req->execute();
 }
+
+
 public static function afficherParIdutil($p){
     $util=$p ;
 	
@@ -127,5 +129,5 @@ public static function afficherParIdutil($p){
     $lesResultats=$req->fetchAll();
     return $lesResultats;
 }
-*/
+}
 ?>

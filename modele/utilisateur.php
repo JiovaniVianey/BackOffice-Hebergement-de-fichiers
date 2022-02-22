@@ -173,5 +173,6 @@ class Utilisateur
     $leResultat=$req->fetch();
     return $leResultat;
   }
+}
 
  ?>
