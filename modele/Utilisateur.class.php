@@ -185,5 +185,17 @@ class Utilisateur
     $leResultat=$req->fetch();
     return $leResultat;
   }
+
+  function getDossiers()
+{
+    //la requète récupe les info de chaque user pr les lignes
+    $sql =  'SELECT utilisateur.id , utilisateur.prenom, utilisateur.nom, utilisateur.mail, utilisateur.ip, utilisateur.droit_ajout, utilsateur.droit_suppression
+    FROM fichier JOIN utilisateur on utilisateur.id=fichier.idUtilisateur
+    GROUP BY idUser';
+
+    $result = MonPdo::getInstance()->query($sql);
+    $lesDossiers = $result->fetchAll();
+    return $lesDossiers;
+}
 }
  ?>
