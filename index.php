@@ -2,6 +2,7 @@
 include("modele/Admin.class.php");
 include("modele/monPdo.php");
 include("modele/Fichier.class.php");
+include("modele/Utilisateur.class.php");
 include("head.php");
 
 

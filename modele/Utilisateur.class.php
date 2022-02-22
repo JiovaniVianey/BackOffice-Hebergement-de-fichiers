@@ -42,13 +42,16 @@ class Utilisateur
   public function getNom(){
     return $this->nomUser;
   }
-  public function setLogin($nom){
+  public function setNom($nom){
     $this->nom = $nom;
   }
 
   // MAIL
   public function getMail(){
     return $this->mail;
+  }
+  public function setMail($mail){
+    $this->mail = $mail;
   }
 
   //MOT DE PASSE
@@ -72,19 +75,24 @@ class Utilisateur
     return $this->autoriser;
   }
   public function setAutoriser($autoriser){
-    return $this->autoriser = $autoriser;
+     $this->autoriser = $autoriser;
   }
 
   // DROIT_AJOUTER
   public function getDroit_ajouter(){
-    return $this->droit_modif;
+    return $this->droit_ajouter;
+  }
+  public function setDroit_ajouter($droit_modif){
+     $this->droit_ajouter = $droit_ajouter;
   }
 
   // DROIT_SUPPRIMER
   public function getDroit_supprimer(){
     return $this->droit_modif;
   }
-
+  public function setDroit_supprimer($droit_supprimer){
+    $this->droit_supprimer = $droit_supprimer;
+ }
 
   public static function ajouterUtilisateur(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mail) values(:prenom,:nom,:mail) ");
