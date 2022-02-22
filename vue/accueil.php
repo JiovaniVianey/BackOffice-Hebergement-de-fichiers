@@ -1,7 +1,4 @@
- <!-- à retirer une fois les liens et includes terminés -->
-<?php
-    include("../head.php");
-?>
+
 
 <div class="wrapper">
     <?php
@@ -16,7 +13,7 @@
         </nav>
         <a href="">
             <div class="card-dossier">
-                <img class="dossier-img my-2" src="../images/folder-img.png" alt="icon de fichier">
+                <img class="dossier-img my-2" src="images/folder-img.png" alt="icon de fichier">
                 <div class="row">
 
                         <h3 class="card-fichier-text">Nom du propriétaire</h3>

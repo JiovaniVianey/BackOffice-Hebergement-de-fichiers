@@ -2,6 +2,7 @@
 include("modele/Admin.class.php");
 include("modele/monPdo.php");
 include("modele/Fichier.class.php");
+include("head.php");
 
 
 if(empty($_GET["uc"]))
@@ -17,7 +18,7 @@ else {
 switch($uc)
 {
     case "accueil" :
-        include("vues/accueil.php") ;
+        include("vue/accueil.php") ;
     break;
 
     case "admin" :
