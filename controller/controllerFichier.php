@@ -26,7 +26,7 @@ case "ajouter" :
 
         $tmpName = $_FILES['uploaded_file']['tmp_name'];
         //remplacement des espaces
-        $fileName = strreplace(' ', '', $_FILES['uploaded_file']['name']);
+        $fileName = str_replace(' ', '', $_FILES['uploaded_file']['name']);
         //vérification de l'existance du dossier
         $nomDossier = '../fichier/'.$connecteduser->getNom().''.$connecteduser->getPrenom().''.$connecteduser->getId(); 
         if ( !is_dir( "../fichiers/$nomDossier" ) ) {
@@ -129,6 +129,10 @@ case "ajouter" :
                 include("vue/fichiers_vue.php"); 
                 $lesFichiers=Fichier::afficherTous();
                 include("vue/fichiers_vue.php") ;
+            break;
+            case "dossier":
+                $id = $_GET["id"];
+                $lesFichiers=Fichier::afficherParIdutil($id);
             break;
 }
 ?>

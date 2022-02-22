@@ -31,7 +31,7 @@
             $nom_dossier = $dossier -> getNom()." ".$dossier -> getPrenom();
             $id_user = $dossier -> getIdutil();
             ?>
-                <a href="controllerFichier.php?idutil=<?php echo $id_user;?>">
+                <a href="controllerFichier.php?fich=dossier&idutil=<?php echo $id_user;?>">
                     <div class="card-dossier">
                         <img class="dossier-img my-2" src="../images/folder-img.png" alt="icon de fichier">
                         <div class="row">
