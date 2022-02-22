@@ -1,6 +1,8 @@
 <?php
 
 $action = $_GET["action"];
+$email = "service.myfile@gmail.com";
+$mdpmail = "eh-8dXC2_bh!(jPK";
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
