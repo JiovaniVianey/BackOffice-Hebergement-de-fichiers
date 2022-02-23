@@ -36,7 +36,8 @@ $message = trim(filter_input(INPUT_POST, "message", FILTER_SANITIZE_STRING, FILT
 
 // Expéditeur
 $mailContact = $email;
-$envoi_mail->setFrom("MyFile.com");
+$nomContact = "MyFile.com";
+$envoi_mail->setFrom($mailContact, $nomContact);
 
     if ($action == "MdpOublie") {
 
@@ -49,6 +50,9 @@ $envoi_mail->setFrom("MyFile.com");
 
         // Corps du Mail (HTML)
         $envoi_mail->isHTML(true);
+
+        // Info de l'utilisateur
+        $res = Utilisateur::trouverUtilisateurparMail($_POST["mail"]);
 
         $body = "<b> <font size=\"3\"> Bonjour, ".$res->getNom()." ".$res->getPrenom()." </font> </b>";
         $body .= "<p> <font size=\"2\"> Afin de réinitiailiser votre Mot de passe: </font> </p>";
