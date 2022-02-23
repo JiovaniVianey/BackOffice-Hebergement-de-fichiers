@@ -27,7 +27,7 @@ $envoi_mail->SMTPAuth = true;
 $envoi_mail->Username = $email;
 $envoi_mail->Password = $mdpmail;
 
-$envoi_mail->SMTPDebug = 2;
+$envoi_mail->SMTPDebug = 1;
 //$envoi_mail->debugoutput = 'html';
 
 $mailExpediteur = trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));
@@ -39,8 +39,8 @@ $mailContact = $email;
 $nomContact = "MyFile.com";
 $envoi_mail->setFrom($mailContact, $nomContact);
 
-    if ($action == "MdpOublie") {
-
+switch($mailaction){
+    case "MdpOublie":
         // Destinataire
         $mailDestinataire = $_POST["mail"];
         $envoi_mail->addAddress($mailDestinataire);
@@ -54,6 +54,10 @@ $envoi_mail->setFrom($mailContact, $nomContact);
         // Info de l'utilisateur
         $res = Utilisateur::trouverUtilisateurparMail($_POST["mail"]);
 
+        // Sauvegarde Token
+        $token = Utilisateur::genererToken();
+        Utilisateur::changerToken($token,$_POST["mail"]);
+
         $body = "<b> <font size=\"3\"> Bonjour, ".$res->getNom()." ".$res->getPrenom()." </font> </b>";
         $body .= "<p> <font size=\"2\"> Afin de réinitiailiser votre Mot de passe: </font> </p>";
         $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."'> Cliquez ici </a>";
@@ -62,13 +66,8 @@ $envoi_mail->setFrom($mailContact, $nomContact);
         $text_body  = "Bonjour, ".$res->getNom()." ".$res->getPrenom()." \n\n";
         $text_body .= "Cliquez ici afin de réinitiailiser votre Mot de passe: \n\n";
         $text_body .= "http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."";
-        
-        $envoi_mail->Body    = $body;
-        $envoi_mail->AltBody = $text_body;
-        $envoi_mail->CharSet = "UTF-8";
-
-    }
-    /*else if ($action == "NotifInscrit") {
+        break;
+    /*case "NotifInscrit":
         // Objet du Mail
         $envoi_mail->Subject = 'Nouvel Inscription';
 
@@ -85,7 +84,13 @@ $envoi_mail->setFrom($mailContact, $nomContact);
         $text_body .= "Information: \n\n".$texte." \n\n";
         $text_body .= "Cordialement, \n";
         $text_body .= "Votre ".$nomContact;
+        break;
     }*/
+}
+
+$envoi_mail->Body    = $body;
+$envoi_mail->AltBody = $text_body;
+$envoi_mail->CharSet = "UTF-8";
 
 // Vérification et Envoi du Mail
 if ($envoi_mail->send()) {

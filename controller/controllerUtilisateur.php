@@ -33,8 +33,6 @@ $action = $_GET["action"] ;
             }
             else
             {
-                $token = Utilisateur::genererToken();
-                Utilisateur::changerToken($_POST["mail"],$token);
                 include("controller/controllerMail.php");
                 include("vue/FormMdpOublie.php");
             }
