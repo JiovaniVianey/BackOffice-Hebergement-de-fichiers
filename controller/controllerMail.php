@@ -27,7 +27,7 @@ $envoi_mail->SMTPAuth = true;
 $envoi_mail->Username = $email;
 $envoi_mail->Password = $mdpmail;
 
-$envoi_mail->SMTPDebug = 1;
+$envoi_mail->SMTPDebug = 0;
 //$envoi_mail->debugoutput = 'html';
 
 $mailExpediteur = trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));
