@@ -2,6 +2,7 @@
 
 <?php
     include("head.php");
+	$token = $_GET["token"];
 ?>
 
 <html>
@@ -40,7 +41,7 @@
 
 	<body>
 		
-		<form class="box" method="POST" action="index.php?uc=utilisateur&action=changementMdp&token=<?php echo $_GET["token"]; ?>">
+		<form class="box" method="POST" action="index.php?uc=utilisateur&action=MdpChangé&token=<?php echo $token; ?>">
 		<h2>Nouveau Mot de Passe</h2>
 		<hr>
 		<label for="identifiant"> <h6> <b>Veuillez saisir votre nouveau mot de passe :</b> </h6> </label>

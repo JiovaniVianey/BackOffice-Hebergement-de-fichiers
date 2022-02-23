@@ -12,9 +12,8 @@ $action = $_GET["action"] ;
         case "MdpOublie":
             include("vue/FormMdpOublie.php");
             break;
-        case "MdpChangement":
-            $token = $_GET["token"];
-            include("vue/FormChangementMdp.php?token=".$token."");
+        case "changementMdp":
+            include("vue/FormChangementMdp.php");
             break;
         case "MailEnvoiMDP":
             session_start();
@@ -37,25 +36,23 @@ $action = $_GET["action"] ;
                 include("vue/FormMdpOublie.php");
             }
             break;
-        case "changementMdp":
+        case "MdpChangé":
             session_start();
-
-            $token = $_GET["token"];
 
             if (($_POST["pass1"] != $_POST["pass2"]) || (empty($_POST["pass1"]) || empty($_POST["pass2"])))
             {
                 $_SESSION['messageerror'] = "Mot de Passe Non Identique";
-                include("vue/FormChangementMdp.php?token=".$token."");
+                include("vue/FormChangementMdp.php");
                 exit;
             }
 			
 			if (strlen($_POST["pass1"] < 8))
             {
                 $_SESSION['messageerror'] = "Mot de Passe Invalide, Veuillez Saisir un mot de passe plus longs (8 Caractères Minimum)";
-                include("vue/FormChangementMdp.php?token=".$token."");
+                include("vue/FormChangementMdp.php");
                 exit;
             }
-			
+			$token = $_GET["token"];
 			$securetoken = MD5($token);
 			Utilisateur::changerMdpOublie($securetoken);
 			$_SESSION['messageclear'] = "Mot de Passe Modifié ! Connectez vous";
