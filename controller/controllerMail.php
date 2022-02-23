@@ -1,6 +1,6 @@
 <?php
 
-$mailaction = $_GET["action"];
+$mailaction = $_GET["mailaction"];
 $email = "service.myfile@gmail.com";
 $mdpmail = "eh-8dXC2_bh!(jPK";
 
@@ -38,11 +38,13 @@ $message = trim(filter_input(INPUT_POST, "message", FILTER_SANITIZE_STRING, FILT
 $mailContact = $email;
 $envoi_mail->setFrom("MyFile.com");
 
-// Destinataire(s)
-$reqMail = choixMail($_POST["mail"]);
-
     switch($action){
         case "MdpOublie":
+
+            // Destinataire
+            $mailDestinataire = $_POST["mail"];
+            $envoi_mail->addAddress($mailDestinataire);
+
             // Objet du Mail
             $envoi_mail->Subject = 'Réinitialisation de Mot De Passe';
 
