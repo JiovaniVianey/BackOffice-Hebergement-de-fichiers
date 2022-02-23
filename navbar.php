@@ -8,10 +8,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ms-auto">
       <li class="nav-item active">
-        <a  id="connect" class="nav-link" href="#">Connexion</a>
+        <a  id="connect" class="nav-link" href="index.php?uc=utilisateur&action=Connexion">Connexion</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">Inscription</a>
+        <a class="nav-link" href="index.php?uc=utilisateur&action=Inscription">Inscription</a>
       </li>
 
   </div>

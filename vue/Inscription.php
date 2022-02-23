@@ -1,14 +1,14 @@
 <!doctype html>
 
 <?php
-    include("../head.php");
+    include("head.php");
 ?>
 
 <html>
 	<head>
 		<title>Inscription</title>
 		<meta charset='utf-8'>
-		<link rel='stylesheet' href='../style/styleInscription.css'>
+		<link rel='stylesheet' href='style/styleInscription.css'>
 	</head>
 
 	<header>
@@ -19,7 +19,7 @@
       <br>
 
 	<body>
-      <form class="box" method="POST" action="inscription.php">
+      <form class="box" method="POST" action="index.php?uc=utilisateur&action=Inscrire">
       <h2>Inscription</h2>
       
       <hr>

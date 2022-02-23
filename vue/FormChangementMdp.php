@@ -1,14 +1,14 @@
 <!doctype html>
 
 <?php
-    include("../head.php");
+    include("head.php");
 ?>
 
 <html>
 	<head>
 		<title>Nouveau Mot de Passe</title>
 		<meta charset='utf-8'>
-		<link rel='stylesheet' href='../style/styleInscription.css'>
+		<link rel='stylesheet' href='style/styleInscription.css'>
 	</head>
 
 	<header>
@@ -43,7 +43,7 @@
 
 	<body>
 		
-		<form class="box" method="POST" action="../index.php?uc=utilisateur&action=changementMdp">
+		<form class="box" method="POST" action="index.php?uc=utilisateur&action=changementMdp&token=<?php echo $_GET["token"]; ?>">
 		<h2>Nouveau Mot de Passe</h2>
 		<hr>
 		<label for="identifiant"> <h6> <b>Veuillez saisir votre nouveau mot de passe :</b> </h6> </label>

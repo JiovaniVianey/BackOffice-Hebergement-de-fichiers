@@ -51,12 +51,12 @@ $reqMail = choixMail($_POST["mail"]);
 
             $body = "<b> <font size=\"3\"> Bonjour, ".$res->getNom()." ".$res->getPrenom()." </font> </b>";
             $body .= "<p> <font size=\"2\"> Afin de réinitiailiser votre Mot de passe: </font> </p>";
-            $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/vue/FormChangementMdp.php?token=".$token."'> Cliquez ici </a>";
+            $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."'> Cliquez ici </a>";
 
             // Corps du Mail (Non HTML)
             $text_body  = "Bonjour, ".$res->getNom()." ".$res->getPrenom()." \n\n";
             $text_body .= "Cliquez ici afin de réinitiailiser votre Mot de passe: \n\n";
-            $text_body .= "http://127.0.0.1/projet-fichier-administration/vue/FormChangementMdp.php?token=".$token."";
+            $text_body .= "http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."";
             break;
         /*case "NotifInscrit":
             // Objet du Mail

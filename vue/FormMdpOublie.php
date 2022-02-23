@@ -1,7 +1,7 @@
 <!doctype html>
 
 <?php
-    include("../head.php");
+    include("head.php");
 ?>
 
 <html>
@@ -43,7 +43,7 @@
 
 	<body>
 		
-		<form class="box" method="POST" action="../index.php?uc=utilisateur&action=MailEnvoiMDP">
+		<form class="box" method="POST" action="index.php?uc=utilisateur&action=MailEnvoiMDP">
 		<h2>Mot de Passe Oublié ?</h2>
 		<hr>
 		<label for="identifiant"> <h6> <b>Veuillez saisir votre adresse e-mail afin de réinitialiser votre mot de passe :</b> </h6> </label>
