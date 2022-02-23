@@ -8,7 +8,7 @@
 	<head>
 		<title>Nouveau Mot de Passe</title>
 		<meta charset='utf-8'>
-		<link rel='stylesheet' href='style/styleInscription.css'>
+		<link rel='stylesheet' href='style/styleConnexion.css'>
 	</head>
 
 	<header>

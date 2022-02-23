@@ -6,22 +6,32 @@ body{
     background-color: rgb(241, 240, 240);
    }
    .box{
-       width: 300px;
-       padding: 40px;
+       width: 380px;
+       padding: 20px;
        position: absolute;
-       top: 50%;
-       left:50%;
-       transform: translate(-50%,-50%);
+       top: 45%;
+       left: 43%;
+       transform: translate(-20%,-20%);
        background:#363636;
        text-align: center;
+       border-radius: 20px;
    }
    .box h2{
        color: white;
        text-transform: uppercase;
        font-weight: 500;
    }
+  
+   .box label{
+    color: white;
+   }
+  
+   .box hr{
+    color: white;
+   }
    
-   .box input[type = "text"],.box input[type = "password"]{
+   
+   .box input[type = "text"],.box input[type = "email"],.box input[type = "password"]{
        border: 0;
        background: none;
        display: block;
@@ -35,7 +45,8 @@ body{
        border-radius: 24px;
        transition: 0.25s;
    }
-   .box input[type = "text"]:focus,.box input[type = "password"]:focus{
+   
+   .box input[type = "text"]:focus,.box input[type = "email"]:focus,.box input[type = "password"]:focus{
        width: 250px;
        border-color: #2ecc71;
        
@@ -57,14 +68,14 @@ body{
    .box input[type= "submit"]:hover{
        background:#2ecc71;
    }
-
+  
    .basic-color
-{
+  {
     color: #33CCFF;
-}
-
-.wrapper
-{
+  }
+  
+  .wrapper
+  {
     margin-left: 10% ;
     margin-right: 10%;
     width: 80%;
@@ -76,10 +87,10 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-}
-
-.card-fichier
-{
+  }
+  
+  .card-fichier
+  {
     width: 300px;
     height: 260px;
     margin: 15px;
@@ -88,20 +99,20 @@ body{
     flex-direction: column;
     border-radius: 30px;
     box-sizing: border-box;
-
-}
-
-.card-fichier-text
-{
+  
+  }
+  
+  .card-fichier-text
+  {
     padding: 1px;
     margin: 0;
     margin-left: 10px;
-
-}
-
-.fichier-img
-{
+  
+  }
+  
+  .fichier-img
+  {
     width: 60%;
     margin-left: 20%;
     margin-right: 20% ;
-}
+  }
