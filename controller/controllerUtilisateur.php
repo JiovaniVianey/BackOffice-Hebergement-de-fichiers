@@ -3,13 +3,25 @@
 $action = $_GET["action"] ;
 
     switch($action){
+        case "Connexion":
+            include("vue/ConnexionUtil.php");
+            break;
+        case "Inscription":
+            include("vue/Inscription.php");
+            break;
+        case "MdpOublie":
+            include("vue/FormMdpOublie.php");
+            break;
+        case "MdpChangement":
+            include("vue/FormChangementMdp.php?token=".$token."");
+            break;
         case "MailEnvoiMDP":
             session_start();
 
             if (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL) || empty($_POST["mail"]))
             {
                 $_SESSION['messageerror'] = "Email Invalide";
-                include("/vue/FormMdpOublie.php");
+                include("vue/FormMdpOublie.php");
                 exit;
             }
 
@@ -22,7 +34,7 @@ $action = $_GET["action"] ;
             {
                 $token = Utilisateur::genererToken();
                 Utilisateur::changerToken($_POST["mail"],$token);
-                include("controllerMail.php?mailaction=MdpOublie");
+                include("controleur/controllerMail.php?mailaction=MdpOublie");
                 include("vue/FormMdpOublie.php");
             }
             break;

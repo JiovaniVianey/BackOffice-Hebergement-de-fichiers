@@ -8,7 +8,7 @@
 	<head>
 		<title>Connexion</title>
 		<meta charset='utf-8'>
-		<link rel='stylesheet' href='../style/styleInscription.css'>
+		<link rel='stylesheet' href='style/styleInscription.css'>
 	</head>
 
 	<header>
