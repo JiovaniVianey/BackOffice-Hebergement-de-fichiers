@@ -27,7 +27,7 @@ $envoi_mail->SMTPAuth = true;
 $envoi_mail->Username = $email;
 $envoi_mail->Password = $mdpmail;
 
-$envoi_mail->SMTPDebug = 0;
+$envoi_mail->SMTPDebug = 2;
 //$envoi_mail->debugoutput = 'html';
 
 $mailExpediteur = trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));
@@ -38,51 +38,50 @@ $message = trim(filter_input(INPUT_POST, "message", FILTER_SANITIZE_STRING, FILT
 $mailContact = $email;
 $envoi_mail->setFrom("MyFile.com");
 
-    switch($action){
-        case "MdpOublie":
+    if ($action == "MdpOublie") {
 
-            // Destinataire
-            $mailDestinataire = $_POST["mail"];
-            $envoi_mail->addAddress($mailDestinataire);
+        // Destinataire
+        $mailDestinataire = $_POST["mail"];
+        $envoi_mail->addAddress($mailDestinataire);
 
-            // Objet du Mail
-            $envoi_mail->Subject = 'Réinitialisation de Mot De Passe';
+        // Objet du Mail
+        $envoi_mail->Subject = 'Réinitialisation de Mot De Passe';
 
-            // Corps du Mail (HTML)
-            $envoi_mail->isHTML(true);
+        // Corps du Mail (HTML)
+        $envoi_mail->isHTML(true);
 
-            $body = "<b> <font size=\"3\"> Bonjour, ".$res->getNom()." ".$res->getPrenom()." </font> </b>";
-            $body .= "<p> <font size=\"2\"> Afin de réinitiailiser votre Mot de passe: </font> </p>";
-            $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."'> Cliquez ici </a>";
+        $body = "<b> <font size=\"3\"> Bonjour, ".$res->getNom()." ".$res->getPrenom()." </font> </b>";
+        $body .= "<p> <font size=\"2\"> Afin de réinitiailiser votre Mot de passe: </font> </p>";
+        $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."'> Cliquez ici </a>";
 
-            // Corps du Mail (Non HTML)
-            $text_body  = "Bonjour, ".$res->getNom()." ".$res->getPrenom()." \n\n";
-            $text_body .= "Cliquez ici afin de réinitiailiser votre Mot de passe: \n\n";
-            $text_body .= "http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."";
-            break;
-        /*case "NotifInscrit":
-            // Objet du Mail
-            $envoi_mail->Subject = 'Nouvel Inscription';
+        // Corps du Mail (Non HTML)
+        $text_body  = "Bonjour, ".$res->getNom()." ".$res->getPrenom()." \n\n";
+        $text_body .= "Cliquez ici afin de réinitiailiser votre Mot de passe: \n\n";
+        $text_body .= "http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."";
+        
+        $envoi_mail->Body    = $body;
+        $envoi_mail->AltBody = $text_body;
+        $envoi_mail->CharSet = "UTF-8";
 
-            // Corps du Mail (HTML)
-            $envoi_mail->isHTML(true);
+    }
+    /*else if ($action == "NotifInscrit") {
+        // Objet du Mail
+        $envoi_mail->Subject = 'Nouvel Inscription';
 
-            $body = "<b> <font size=\"3\"> Vous avez un nouvel utilisateur inscrit sur MyFile.com </font> </b>";
-            $body .= "<p> <font size=\"2\"> Informations: <hr>".$util->getPrenom()."</font> </p>";
-            $body .= "<hr> Cordialement, <br>";
-            $body .= "Cliquez Ici afin de gérer le nouveau venu";
+        // Corps du Mail (HTML)
+        $envoi_mail->isHTML(true);
 
-            // Corps du Mail (Non HTML)
-            $text_body  = "Immeuble 6 Place Jean Giraudoux, 94000 Créteil \n\n";
-            $text_body .= "Information: \n\n".$texte." \n\n";
-            $text_body .= "Cordialement, \n";
-            $text_body .= "Votre ".$nomContact;
-            break;*/
-        }
+        $body = "<b> <font size=\"3\"> Vous avez un nouvel utilisateur inscrit sur MyFile.com </font> </b>";
+        $body .= "<p> <font size=\"2\"> Informations: <hr>".$util->getPrenom()."</font> </p>";
+        $body .= "<hr> Cordialement, <br>";
+        $body .= "Cliquez Ici afin de gérer le nouveau venu";
 
-    $envoi_mail->Body    = $body;
-    $envoi_mail->AltBody = $text_body;
-    $envoi_mail->CharSet = "UTF-8";
+        // Corps du Mail (Non HTML)
+        $text_body  = "Immeuble 6 Place Jean Giraudoux, 94000 Créteil \n\n";
+        $text_body .= "Information: \n\n".$texte." \n\n";
+        $text_body .= "Cordialement, \n";
+        $text_body .= "Votre ".$nomContact;
+    }*/
 
 // Vérification et Envoi du Mail
 if ($envoi_mail->send()) {

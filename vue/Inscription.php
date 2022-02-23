@@ -15,9 +15,6 @@
         <h1>MyFile.com</h1>
       </header>
 
-      <br>
-      <br>
-
 	<body>
       <form class="box" method="POST" action="index.php?uc=utilisateur&action=Inscrire">
       <h2>Inscription</h2>
