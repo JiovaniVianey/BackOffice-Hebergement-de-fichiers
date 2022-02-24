@@ -129,5 +129,6 @@ public static function afficherParIdutil($p){
     $lesResultats=$req->fetchAll();
     return $lesResultats;
 }
+
 }
 ?>

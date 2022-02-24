@@ -118,5 +118,21 @@ $action = $_GET["action"] ;
             $lesUtilisateur=Utilisateur::afficherTous();
             include("??") ;
             break;
+        case "conexion" :
+            $rep=Admin::verifier($_POST["??"], md5($_POST["??"]));
+            if($rep==true){
+                $_SESSION["autorisation"]=valider($_POST["??"], md5($_POST["??"]);
+                $lesFichier=Fichier::afficherParId($_SESSION["autorisation"]->getId());
+                include("??") ;
+            }
+            else{
+                include("??");
+            }
+        break;
+        case "deconnexion" :
+            Admin::deconnexion();
+            include("??");
+            
+        break;
     }
 ?>

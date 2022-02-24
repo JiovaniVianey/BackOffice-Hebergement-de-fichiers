@@ -269,6 +269,44 @@ class Utilisateur
     $req->bindParam(':mdp',$mdp);
     $req->execute();
   }
+  public static function verifier ($login,$mdp){
+    $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=:mdp");
 
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+    $req->bindParam('login',$login);
+    $req->bindParam('mdp',$mdp);
+    $req->execute();
+    $leResultat=$req->fetchAll();
+    $nb_lignes= count($leResultat);
+    if($nb_lignes==0)
+    {
+        $rep=false;
+    } 
+    else
+    {
+        $rep=true;
+    }
+    return $rep;
+}
+public static function deconnexion(){
+    
+
+
+unset($_SESSION['autorisation']);
+
+
+
+}
+public static function valider ($login,$mdp){
+  $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=:mdp");
+
+  $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+  $req->bindParam('login',$login);
+  $req->bindParam('mdp',$mdp);
+  $req->execute();
+  $leResultat=$req->fetchAll();
+
+  return $leResultat;
+}
 }
  ?>
