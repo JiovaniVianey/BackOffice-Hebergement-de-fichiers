@@ -114,25 +114,24 @@ $action = $_GET["action"] ;
             include("??") ;
             break;
         case "affich" :
-
             $lesUtilisateur=Utilisateur::afficherTous();
             include("??") ;
             break;
-        case "conexion" :
-            $rep=Admin::verifier($_POST["??"], md5($_POST["??"]));
+        case "seConnecter" :
+            $rep=Admin::verifier($_POST["login"], md5($_POST["pass"]));
             if($rep==true){
-                $_SESSION["autorisation"]=valider($_POST["??"], md5($_POST["??"]);
+                $_SESSION["autorisation"] = valider($_POST["login"], md5($_POST["pass"]));
                 $lesFichier=Fichier::afficherParId($_SESSION["autorisation"]->getId());
-                include("??") ;
+                include("accueil.php");
             }
             else{
-                include("??");
+                $_SESSION['messageerror'] = "Login ou Mot de Passe Incorrect";
+                include("ConnexionUtil.php");
             }
-        break;
-        case "deconnexion" :
+            break;
+        case "deconnexion":
             Admin::deconnexion();
-            include("??");
-            
-        break;
+            include("ConnexionUtil.php");
+            break;
     }
 ?>

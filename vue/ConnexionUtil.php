@@ -45,15 +45,15 @@
 		<form class="box" method="POST" action="index.php?uc=utilisateur&action=seConnecter">
 		<h2>Connexion</h2>
 		<hr>
-		<input type='text' name='pseudo' placeholder="Login" required="">
-		<input type='password' name='pseudo' placeholder="Mot de Passe" required="">
+		<input type='text' name='login' placeholder="Login" required="">
+		<input type='password' name='pass' placeholder="Mot de Passe" required="">
 		
 		<input type="submit" value="Se Connecter"/>
 		<hr>
 		<label for="identifiant"> <p> Pas Encore Inscrit ? <a href="index.php?uc=utilisateur&action=Inscription">S'incrire</a> </p> </label>
 		<br>
 		<a href="index.php?uc=utilisateur&action=MdpOublie">Mot de passe oublié ? </a>
-
 		</form>
+		
 	</body>
 </html>	
