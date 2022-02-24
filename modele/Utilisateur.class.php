@@ -96,20 +96,22 @@ class Utilisateur
 
   // DROIT_SUPPRIMER
   public function getDroit_supprimer(){
-    return $this->droit_modif;
+    return $this->droit_supprimer;
   }
   public function setDroit_supprimer($droit_supprimer){
     $this->droit_supprimer = $droit_supprimer;
  }
 
   public static function ajouterUtilisateur(Utilisateur $utilisateur){
-    $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mail,adresse_ip,admin,autorise,droit_ajouter,droit_supprimer) values(:prenom,:nom,:mail,:ip,:admin,:autorise,:droit_ajouter,:droit_supprimer)");
+    $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mdp,mail,adresse_ip,admin,autorise,droit_ajouter,droit_supprimer) values(:prenom,:nom,MD5(:mdp),:mail,:ip,:admin,:autorise,:droit_ajouter,:droit_supprimer)");
     $prenom=$utilisateur->getPrenom();
     $req->bindParam(':prenom',$prenom);
     $nom=$utilisateur->getNom();
     $req->bindParam(':nom',$nom);
     $mail=$utilisateur->getMail();
     $req->bindParam(':mail',$mail);
+    $mdp=$utilisateur->getMdp();
+    $req->bindParam(':mdp',$mdp);
     $ip=$utilisateur->getAddresseIP();
     $req->bindParam(':ip',$ip);
     $admin=$utilisateur->getAdmin();
@@ -295,7 +297,7 @@ class Utilisateur
   // Validation et Vérification
 
   public static function verifier ($login,$mdp){
-    $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=:mdp");
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where mail=:login and mdp=:mdp");
 
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
     $req->bindParam('login',$login);
@@ -315,7 +317,7 @@ class Utilisateur
   }
 
   public static function valider ($login,$mdp){
-    $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=MD5(:mdp)");
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where mail=:login and mdp=:mdp");
 
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
     $req->bindParam('login',$login);
@@ -340,7 +342,7 @@ class Utilisateur
   }
 
   public static function changeraddresseIP($ip,$id){
-    $req=MonPdo::getInstance()->prepare("update utilisateur set adresse_ip = (:ip), where id=(:id)");
+    $req=MonPdo::getInstance()->prepare("update utilisateur set adresse_ip = :ip where id=:id");
     $req->bindParam(':ip',$ip);
     $req->bindParam(':id',$id);
     $req->execute();

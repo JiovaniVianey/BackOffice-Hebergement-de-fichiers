@@ -86,6 +86,7 @@ $action = $_GET["action"] ;
                 include("vue/Attente.php");
             }
             else{
+                session_start();
                 $_SESSION['messageerror'] = "Mot de Passe Non Identique";
                 include("vue/Inscription.php");
             }
@@ -125,10 +126,12 @@ $action = $_GET["action"] ;
             include("??") ;
             break;
         case "seConnecter" :
-            $rep=Admin::verifier($_POST["login"], md5($_POST["pass"]));
+            session_start();
+            $rep=Utilisateur::verifier($_POST["login"], MD5($_POST["pass"]));
             if($rep==true){
-                $_SESSION["autorisation"] = Utilisateur::valider($_POST["login"], md5($_POST["pass"]));
-                $id = $_SESSION["autorisation"]->getId();
+                $valider = Utilisateur::valider($_POST["login"], MD5($_POST["pass"]));
+                $_SESSION["autorisation"] = serialize($valider);
+                $id = $valider[0]->getId();
                 $ip = Utilisateur::addresseIP();
                 Utilisateur::changeraddresseIP($ip,$id);
                 $lesFichier=Fichier::afficherParId($id);
