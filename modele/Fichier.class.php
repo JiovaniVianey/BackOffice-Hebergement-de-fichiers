@@ -77,18 +77,18 @@ public static function afficherRecherche(){
 }
 public static function ajouter(Fichier $fichier){
     $req=MonPdo::getInstance()->prepare("insert into fichier (nom, chemin, type, taille, idutil) values(:nom, :chemin, :type, :taille, :idutil)");
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'fichier');
     $nom=$fichier->getNom();
-    $req->bindParam('nom',$nom);
+    $req->bindParam(':nom',$nom);
     $chemin=$fichier->getChemin();
-    $req->bindParam('chemin',$chemin);
+    $req->bindParam(':chemin',$chemin);
     $type=$fichier->getType();
-    $req->bindParam('type',$type);
+    $req->bindParam(':type',$type);
     $taille=$fichier->getTaille();
-    $req->bindParam('taille',$taille);
+    $req->bindParam(':taille',$taille);
     $idutil = $fichier->getIdutil();
-    $req->bindParam('idutil',$idutil);
-    $nb=$req->execute();
-    
+    $req->bindParam(':idutil',$idutil);
+    $req->execute();
 }
 public static function trouverUnFichier($id){
     $req=MonPdo::getInstance()->prepare("select * from fichier where id=:id");
@@ -123,12 +123,25 @@ public static function supprimer(Fichier $fichier){
 public static function afficherParIdutil($p){
     $util=$p ;
 	
-    $req=MonPdo::getInstance()->prepare("select*from fichier where idutil='%$util%'");
+    $req=MonPdo::getInstance()->prepare("select*from fichier where idutil=:util");
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'fichier');
+    $req->bindParam('util',$p);
     $req->execute();
     $lesResultats=$req->fetchAll();
     return $lesResultats;
 }
+
+static function forcerTelechargement($nom, $chemin, $taille)
+  {
+    header('Content-Type: application/octet-stream');
+    header('Content-Length: '. $taille);
+    header('Content-disposition: attachment; filename='. $nom);
+    header('Pragma: no-cache');
+    header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+    header('Expires: 0');
+    readfile($chemin);
+    exit();
+  }
 
 }
 ?>

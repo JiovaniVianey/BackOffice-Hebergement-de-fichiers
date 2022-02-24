@@ -1,20 +1,44 @@
 <?php
-session_start();
-
-include("modele/Admin.class.php");
-include("modele/monPdo.php");
-include("modele/Fichier.class.php");
-include("modele/Utilisateur.class.php");
-include("head.php");
-
-
+if(session_id() == ''){
+    session_start();
+ }
+include_once("modele/Admin.class.php");
+include_once("modele/monPdo.php");
+include_once("modele/Fichier.class.php");
+include_once("modele/Utilisateur.class.php");
+include_once("head.php");
 
 
     if(empty($_GET["uc"]))
     {
-        include("vue/ConnexionUtil.php");
+        if( !isset($_SESSION['connecte']) )
+        {
+            include("vue/ConnexionUtil.php");
+        }
+        else
+        {
+            echo $_SESSION["connecte"];
+            $id = $_SESSION['connecte'];
+            $resultat = Utilisateur::trouverUtilisateur($id);
+            
+            $connectedUser = $resultat;
+            include('vue/accueil.php');
+        }
+        
     }
     else {
+        if( !isset($_SESSION['connecte']) )
+        {
+            include("vue/ConnexionUtil.php");
+        }
+        else
+        {
+            echo $_SESSION["connecte"];
+            $id = $_SESSION['connecte'];
+            $resultat = Utilisateur::trouverUtilisateur($id);
+            
+            $connectedUser = $resultat;
+        }
         $uc=$_GET["uc"];
     
     

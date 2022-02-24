@@ -28,12 +28,12 @@ case "ajouter" :
         //remplacement des espaces
         $fileName = str_replace(' ', '', $_FILES['uploaded_file']['name']);
         //vérification de l'existance du dossier
-        $nomDossier = '../fichier/'.$connecteduser->getNom().''.$connecteduser->getPrenom().''.$connecteduser->getId(); 
-        if ( !is_dir( "../fichiers/$nomDossier" ) ) {
-            mkdir("../fichiers/$nomDossier");
+        $nomDossier = $connectedUser->getNom().'_'.$connectedUser->getPrenom().'_'.$connectedUser->getId(); 
+        if ( !is_dir( "fichiers/$nomDossier" ) ) {
+            mkdir("fichiers/$nomDossier");
         }
 
-        $filePath = "../fichiers/$nomDossier/".$fileName;
+        $filePath = "fichiers/$nomDossier/".$fileName;
         move_uploaded_file($tmpName, $filePath);
     }
     $fichier = new Fichier();
@@ -42,9 +42,9 @@ case "ajouter" :
     
     $fichier->setTaille($fileSize);
     $fichier->setType($fileExt);
-    echo $fichier;
-    // Fichier::ajouter($fichier);
-    // $lesFichiers=Fichier::afficherTous();
+    $fichier->setIdutil($_SESSION['connecte']);
+    Fichier::ajouter($fichier);
+    $lesFichiers=Fichier::afficherTous();
     include("vue/fichiers_vue.php") ;
     break;
     case "supprimer" :
@@ -106,15 +106,15 @@ case "ajouter" :
             $fichier->setTaille($fileSize);
             $fichier->setType($fileExt);
             echo $fichier;
-            // Fichier::ajouter($fichier);
-            // $lesFichiers=Fichier::afficherParIdutil($_GET["dos"]);
+            Fichier::ajouter($fichier);
+            $lesFichiers=Fichier::afficherParIdutil($_SESSION['connecte']);
             include("vue/fichiers_vue.php") ;
             break;
             case "dosupprimer" :
                 $fichier=Fichier::trouverUnFichier($_GET["supp"]);
                 Fichier::supprimer($fichier);
                 $lesFichiers=Fichier::afficherParIdutil($_GET["dos"]);
-                include("vue/fichiers_vue.php") ;
+                include("vue/fichiers_vue.php"); 
                 break;
             case "telecharger" :
                 $fichier=Fichier::trouverUnFichier($_GET["tel"]);
@@ -124,20 +124,24 @@ case "ajouter" :
                 break;
             case "dotelecharger" :
                 $fichier=Fichier::trouverUnFichier($_GET["tel"]);
-                file_get_contents($fichier->getChemin());
+                $nom = $fichier->getNom();
+                $chemin = $fichier->getChemin();
+                $taille = $fichier->getTaille();
+                Fichier::forcerTelechargement($nom, $chemin, $taille);
+
                 $lesFichiers=Fichier::afficherParIdutil($_GET["dos"]);
                 include("vue/fichiers_vue.php"); 
-                $lesFichiers=Fichier::afficherTous();
-                include("vue/fichiers_vue.php") ;
             break;
             case "dossier":
                 $id = $_GET["id"];
                 $lesFichiers=Fichier::afficherParIdutil($id);
-                if(($_SESSION["autorisation"]->getId() == 0){
-                    include("??");
+                if($_SESSION["autorisation"]->getId() == 0)
+                {
+                    include("vue/fichiers_vue.php");
                 }
-                else if($_SESSION["autorisation"]->getId() == $lesFichiers[0]->getIdutil()){
-                    $ut=trouverUtilisateur($_SESSION["autorisation"]->getId();)
+                else if($_SESSION["autorisation"]->getId() == $lesFichiers[0]->getIdutil())
+                {
+                    $ut=Utilisateur::trouverUtilisateur($_SESSION["autorisation"]->getId());
                     $da=$ut->getDroit_ajouter();
                     $ds=$ut->getDroit_supprimer();
                     if($da=="true"&&$ds=="true"){

@@ -228,12 +228,12 @@ class Utilisateur
     return $leResultat;
   }
 
-  function getDossiers()
+  public static function getDossiers()
   {
     //la requète récupe les info de chaque user pr les lignes
-    $sql =  'SELECT utilisateur.id , utilisateur.prenom, utilisateur.nom, utilisateur.mail, utilisateur.ip, utilisateur.droit_ajout, utilsateur.droit_suppression
-    FROM fichier JOIN utilisateur on utilisateur.id=fichier.idUtilisateur
-    GROUP BY idUser';
+    $sql =  'SELECT utilisateur.id , utilisateur.prenom, utilisateur.nom, utilisateur.mail, utilisateur.droit_ajouter, utilisateur.droit_supprimer
+    FROM fichier JOIN utilisateur on utilisateur.id=fichier.idutil
+    GROUP BY idutil';
 
     $result = MonPdo::getInstance()->query($sql);
     $lesDossiers = $result->fetchAll();

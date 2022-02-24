@@ -1,5 +1,4 @@
 <?php
-
 $action = $_GET["action"] ;
 
     switch($action){
@@ -134,11 +133,12 @@ $action = $_GET["action"] ;
             $rep=Utilisateur::verifier($_POST["login"], MD5($_POST["pass"]));
             if($rep==true){
                 $valider = Utilisateur::valider($_POST["login"], MD5($_POST["pass"]));
-                $_SESSION["connecte"] = $valider[0]->getId();
+                $idConnecte = $valider[0]->getId();
+                $_SESSION["connecte"] = $idConnecte;
                 $id = $valider[0]->getId();
                 $ip = Utilisateur::addresseIP();
                 Utilisateur::changeraddresseIP($ip,$id);
-                $lesFichier=Fichier::afficherParIdutil($id);
+                $lesDossiers = Utilisateur::getDossiers();
                 include("vue/accueil.php");
             }
             else{
