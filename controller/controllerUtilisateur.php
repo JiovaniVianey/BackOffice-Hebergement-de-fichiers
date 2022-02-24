@@ -70,7 +70,15 @@ $action = $_GET["action"] ;
 			
             break;
         case "Ajout" :
+
+            session_start();
+
             if($_POST["mdp1"] == $_POST["mdp2"]){
+                if (verifier($_POST["mail"],$_POST["mdp1"])){
+                    $_SESSION['messageerror'] = "Compte Dejà Existant";
+                    include("vue/Inscription.php");
+                    exit;
+                }
                 $Utilisateur = new Utilisateur();
                 $Utilisateur->setPrenom($_POST["prenom"]);
                 $Utilisateur->setNom($_POST["nom"]);
@@ -86,7 +94,6 @@ $action = $_GET["action"] ;
                 include("vue/Attente.php");
             }
             else{
-                session_start();
                 $_SESSION['messageerror'] = "Mot de Passe Non Identique";
                 include("vue/Inscription.php");
             }
@@ -134,7 +141,7 @@ $action = $_GET["action"] ;
                 $id = $valider[0]->getId();
                 $ip = Utilisateur::addresseIP();
                 Utilisateur::changeraddresseIP($ip,$id);
-                $lesFichier=Fichier::afficherParId($id);
+                $lesFichier=Fichier::afficherParIdutil($id);
                 include("vue/accueil.php");
             }
             else{
@@ -146,9 +153,9 @@ $action = $_GET["action"] ;
             Admin::deconnexion();
             include("vue/ConnexionUtil.php");
             break;
-            case"afficheun":
-                Utilisateur::trouverUtilisateur($_GET["??"]);
-                include("??");
-            break;
+        case"afficheun":
+            Utilisateur::trouverUtilisateur($_GET["??"]);
+            include("??");
+        break;
     }
 ?>
