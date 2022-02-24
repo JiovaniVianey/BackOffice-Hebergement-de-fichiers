@@ -90,7 +90,7 @@ class Utilisateur
   public function getDroit_ajouter(){
     return $this->droit_ajouter;
   }
-  public function setDroit_ajouter($droit_modif){
+  public function setDroit_ajouter($droit_ajouter){
      $this->droit_ajouter = $droit_ajouter;
   }
 
@@ -103,13 +103,23 @@ class Utilisateur
  }
 
   public static function ajouterUtilisateur(Utilisateur $utilisateur){
-    $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mail) values(:prenom,:nom,:mail) ");
+    $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mail,adresse_ip,admin,autorise,droit_ajouter,droit_supprimer) values(:prenom,:nom,:mail,:ip,:admin,:autorise,:droit_ajouter,:droit_supprimer)");
     $prenom=$utilisateur->getPrenom();
     $req->bindParam(':prenom',$prenom);
     $nom=$utilisateur->getNom();
     $req->bindParam(':nom',$nom);
     $mail=$utilisateur->getMail();
     $req->bindParam(':mail',$mail);
+    $ip=$utilisateur->getAddresseIP();
+    $req->bindParam(':ip',$ip);
+    $admin=$utilisateur->getAdmin();
+    $req->bindParam(':admin',$admin);
+    $autoriser=$utilisateur->getAutoriser();
+    $req->bindParam(':autorise',$autoriser);
+    $droit_ajouter=$utilisateur->getDroit_ajouter();
+    $req->bindParam(':droit_ajouter',$droit_ajouter);
+    $droit_supprimer=$utilisateur->getDroit_supprimer();
+    $req->bindParam(':droit_supprimer',$droit_supprimer);
     $req->execute();
   }
 
