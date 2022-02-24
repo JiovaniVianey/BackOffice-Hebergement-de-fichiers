@@ -76,6 +76,8 @@ $action = $_GET["action"] ;
                 $Utilisateur->setNom($_POST["nom"]);
                 $Utilisateur->setMdp($_POST["mdp1"]);
                 $Utilisateur->setMail($_POST["mail"]);
+                $ip = Utilisateur::addresseIP();
+                $Utilisateur->setAddresseIP($ip);
                 $Utilisateur->setAdmin(false);
                 $Utilisateur->setAutoriser(false);
                 $Utilisateur->setDroit_ajouter(false);
@@ -125,7 +127,7 @@ $action = $_GET["action"] ;
         case "seConnecter" :
             $rep=Admin::verifier($_POST["login"], md5($_POST["pass"]));
             if($rep==true){
-                $_SESSION["autorisation"] = valider($_POST["login"], md5($_POST["pass"]));
+                $_SESSION["autorisation"] = Utilisateur::valider($_POST["login"], md5($_POST["pass"]));
                 $lesFichier=Fichier::afficherParId($_SESSION["autorisation"]->getId());
                 include("vue/accueil.php");
             }

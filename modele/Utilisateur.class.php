@@ -70,6 +70,14 @@ class Utilisateur
     $this->admin =$nvAdmin;
   }
 
+  // ADDRESSE IP
+  public function getAddresseIP(){
+    return $this->adresse_ip;
+  }
+  public function setAddresseIP($nvIp){
+    $this->admin =$nvIp;
+  }
+
   // AUTORISATION
   public function getAutoriser(){
     return $this->autoriser;
@@ -273,6 +281,7 @@ class Utilisateur
     $req->bindParam(':mdp',$mdp);
     $req->execute();
   }
+
   public static function verifier ($login,$mdp){
     $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=:mdp");
 
@@ -291,26 +300,27 @@ class Utilisateur
         $rep=true;
     }
     return $rep;
+  }
+
+  public static function deconnexion(){
+  unset($_SESSION['autorisation']);
+  }
+
+  public static function valider ($login,$mdp){
+    $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=MD5(:mdp)");
+
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+    $req->bindParam('login',$login);
+    $req->bindParam('mdp',$mdp);
+    $req->execute();
+    $leResultat=$req->fetchAll();
+
+    return $leResultat;
+  }
+
+  public static function addresseIP(){
+    $IP = $_SERVER['REMOTE_ADDR'];
+    return $IP;
+  }
 }
-public static function deconnexion(){
-    
-
-
-unset($_SESSION['autorisation']);
-
-
-
-}
-public static function valider ($login,$mdp){
-  $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=MD5(:mdp)");
-
-  $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
-  $req->bindParam('login',$login);
-  $req->bindParam('mdp',$mdp);
-  $req->execute();
-  $leResultat=$req->fetchAll();
-
-  return $leResultat;
-}
-}
- ?>
+?>
