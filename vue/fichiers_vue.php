@@ -1,10 +1,10 @@
  <!-- à retirer une fois les liens et includes terminés -->
  <?php
-
 use function PHPSTORM_META\type;
-
     include("../head.php");
 ?>
+<link rel="stylesheet" href="../style/styleaccueil.css">
+    <link rel="stylesheet" href="../style/stylelisteutilisateurs.css">
 
 <div class="wrapper">
     <?php

@@ -1,12 +1,28 @@
  <!-- à retirer une fois les liens et includes terminés -->
+ <link rel="stylesheet" href="../style/styleaccueil.css">
+    <link rel="stylesheet" href="../style/stylelisteutilisateurs.css">
  <?php
     include("../head.php");
+    
 ?>
 
 <div class="wrapper">
-<?php
-    include("header.php");
-    ?>
+  <header>
+    <h1>MyFile.com</h1>
+          
+      <h3>Liste des utilisateurs </h3>
+      <div class="d-flex flex-row flex-wrap">
+         <?php
+          // if ($utilisateur -> getDroitModif())
+          //   {
+          //       echo '<a href="">Mes Fichiers</a>';
+          //   }
+        ?>
+        <a href="">Mes Fichiers</a>
+      </div>
+          
+          
+    </header>
 <table class="table table-striped">
   <thead>
 
