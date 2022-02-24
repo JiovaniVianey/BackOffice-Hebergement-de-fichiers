@@ -154,5 +154,9 @@ $action = $_GET["action"] ;
             Utilisateur::trouverUtilisateur($_GET["??"]);
             include("??");
         break;
+        case"affichnonauto":
+            Utilisateur::afficherNonautorise();
+            include("??");
+        break;
     }
 ?>
