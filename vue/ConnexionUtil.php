@@ -15,6 +15,7 @@
         <h1>MyFile.com</h1>
     </header>
 
+<center>
 <?php
 	if (session_status() === PHP_SESSION_NONE) {
 		session_start();
@@ -37,6 +38,7 @@
     <?php
     }
 ?>
+</center>
 
 	<body>
 		

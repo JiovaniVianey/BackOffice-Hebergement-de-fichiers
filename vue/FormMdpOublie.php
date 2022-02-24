@@ -15,6 +15,7 @@
         <h1>MyFile.com</h1>
     </header>
 
+<center>
 <?php
 	if (session_status() === PHP_SESSION_NONE) {
 		session_start();
@@ -25,6 +26,7 @@
 		<div class="alert alert-success" role="alert" id="alert" >
 		<?php echo $_SESSION['messageclear'] ." <i class='far fa-check-circle'></i>" ; $_SESSION['messageclear'] = null; ?>
 		</div>
+
 <?php
 	}
 
@@ -37,6 +39,8 @@
 	<?php
 	}
 ?>
+</center>
+
 
 	<body>
 		
