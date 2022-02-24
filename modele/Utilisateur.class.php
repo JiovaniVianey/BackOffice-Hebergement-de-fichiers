@@ -348,6 +348,12 @@ class Utilisateur
     $req->bindParam(':id',$id);
     $req->execute();
   }
-
+  public static function afficherNonautorise(){
+    $req=MonPdo::getInstance()->prepare("select*from utilisateur where autorise= 0");
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+    $req->execute();
+    $lesResultats=$req->fetchAll();
+    return $lesResultats;
+  }
 }
 ?>
