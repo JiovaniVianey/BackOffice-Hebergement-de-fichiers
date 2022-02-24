@@ -70,18 +70,23 @@ $action = $_GET["action"] ;
 			
             break;
         case "Ajout" :
-            $Utilisateur = new Utilisateur();
-            $Utilisateur->setPrenom($_POST["?"]);
-            $Utilisateur->setNom($_POST["?"]);
-            $Utilisateur->setMdp($_POST["?"]);
-            $Utilisateur->setMail($_POST["?"]);
-            $Utilisateur->setAdmin(false);
-            $Utilisateur->setAutoriser(false);
-            $Utilisateur->setDroit_ajouter(false);
-            $Utilisateur->setDroit_supprimer(false);
-            Utilisateur::ajouter($produit);
-            //afficher la liste
-            include("?") ;
+            if($_POST["mdp1"] == $_POST["mdp2"]){
+                $Utilisateur = new Utilisateur();
+                $Utilisateur->setPrenom($_POST["prenom"]);
+                $Utilisateur->setNom($_POST["nom"]);
+                $Utilisateur->setMdp($_POST["mdp1"]);
+                $Utilisateur->setMail($_POST["mail"]);
+                $Utilisateur->setAdmin(false);
+                $Utilisateur->setAutoriser(false);
+                $Utilisateur->setDroit_ajouter(false);
+                $Utilisateur->setDroit_supprimer(false);
+                Utilisateur::ajouter($Utilisateur);
+                include("vue/Attente.php");
+            }
+            else{
+                $_SESSION['messageerror'] = "Mot de Passe Non Identique";
+                include("vue/Inscription.php");
+            }
             break;
         case "changeradmin" :
             $Utilisateur=Utilisateur::trouverUtilisateur($_GET["??"]);
@@ -127,17 +132,6 @@ $action = $_GET["action"] ;
             else{
                 $_SESSION['messageerror'] = "Login ou Mot de Passe Incorrect";
                 include("vue/ConnexionUtil.php");
-            }
-            break;
-        case "sInscrire" :
-            if($_POST["mdp1"] == $_POST["mdp2"]){
-                $_SESSION["autorisation"] = valider($_POST["login"], md5($_POST["pass"]));
-                $lesFichier=Fichier::afficherParId($_SESSION["autorisation"]->getId());
-                include("vue/Attente.php");
-            }
-            else{
-                $_SESSION['messageerror'] = "Mot de Passe Non Identique";
-                include("vue/Inscription.php");
             }
             break;
         case "deconnexion":

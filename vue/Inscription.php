@@ -41,7 +41,7 @@
 </center>
 
 	<body>
-      <form class="box" method="POST" action="index.php?uc=utilisateur&action=sInscrire">
+      <form class="box" method="POST" action="index.php?uc=utilisateur&action=Ajout">
       <h2>Inscription</h2>
       
       <hr>
@@ -50,7 +50,7 @@
       <input type='text' name='nom' placeholder="Identifiant" required="">
 
       <label for="identifiant"> <h6> <b>Prénom</b> </h6> </label>
-      <input type='text' name='prénom' placeholder="Identifiant" required="">
+      <input type='text' name='prenom' placeholder="Identifiant" required="">
       
       <label for="mail"> <h6> <b>E-mail</b> </h6> </label>
       <input type='email' name='mail' placeholder="E-mail" required="">
