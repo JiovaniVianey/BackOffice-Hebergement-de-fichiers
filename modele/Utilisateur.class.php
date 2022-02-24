@@ -125,6 +125,7 @@ class Utilisateur
   public static function changeAutorisation(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set autoriser= :autoriser where id=:id"); //il faudra voir bdd
     $autoriser=$utilisateur->getAutoriser();
+    $autoriser = !$autoriser;
     $req->bindParam(':autoriser',$autoriser);
     $id=$utilisateur->getId();
     $req->bindParam(':id', $id);
@@ -134,6 +135,7 @@ class Utilisateur
   public static function changeAdmin(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set admin = :admin where id=:id");     // il faudra voir avec la base de données
     $admin=$utilisateur->getAdmin();
+    $admin=!$admin;
     $req->bindParam(':admin',$admin);
     $id=$utilisateur->getId();
     $req->bindParam(':id',$id);
@@ -144,6 +146,7 @@ class Utilisateur
     $req=MonPdo::getInstance()->prepare("update utilisateur set droit_ajouter= :droit_ajouter where id=:id");   // il faudra voir avec la base de données
     $droit_ajouter=$utilisateur->getDroit_ajouter();
     $req->bindParam(':droit_ajouter',$droit_ajouter);
+    $droit_ajouter=!$droit_ajouter;
     $id=$utilisateur->getId();
     $req->bindParam(':id',$id);
     $req->execute();
@@ -153,6 +156,7 @@ class Utilisateur
     $req=MonPdo::getInstance()->prepare("update utilisateur set droit_supprimer= :droit_supprimer where id=:id");   // il faudra voir avec la base de données
     $droit_supprimer=$utilisateur->getDroit_supprimer();
     $req->bindParam(':droit_supprimer',$droit_supprimer);
+    $droit_supprimer=!$droit_supprimer;
     $id=$utilisateur->getId();
     $req->bindParam(':id',$id);
     $req->execute();
