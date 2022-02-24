@@ -10,6 +10,7 @@ class Utilisateur
   private $autoriser  ;
   private $droit_ajouter;
   private $droit_supprimer;
+  private $adresse_ip;
 
 
   public function _construct($id,$prenom,$nom,$mail,$mdp,$admin,$autoriser,$droit_ajouter,$droit_supprimer){

@@ -7,7 +7,7 @@ $action = $_GET["action"] ;
             include("vue/ConnexionUtil.php");
             break;
         case "Inscription":
-            include("vue/Inscription.php");
+            include("vue/inscription.php");
             break;
         case "MdpOublie":
             include("vue/FormMdpOublie.php");
@@ -16,7 +16,6 @@ $action = $_GET["action"] ;
             include("vue/FormChangementMdp.php");
             break;
         case "MailEnvoiMDP":
-            session_start();
 
             if (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL) || empty($_POST["mail"]))
             {
@@ -37,7 +36,6 @@ $action = $_GET["action"] ;
             }
             break;
         case "MdpChangé":
-            session_start();
 
             if (($_POST["pass1"] != $_POST["pass2"]) || (empty($_POST["pass1"]) || empty($_POST["pass2"])))
             {
@@ -71,10 +69,9 @@ $action = $_GET["action"] ;
             break;
         case "Ajout" :
 
-            session_start();
 
             if($_POST["mdp1"] == $_POST["mdp2"]){
-                if (verifier($_POST["mail"],$_POST["mdp1"])){
+                if (Utilisateur::verifier($_POST["mail"],$_POST["mdp1"])){
                     $_SESSION['messageerror'] = "Compte Dejà Existant";
                     include("vue/Inscription.php");
                     exit;
@@ -86,10 +83,10 @@ $action = $_GET["action"] ;
                 $Utilisateur->setMail($_POST["mail"]);
                 $ip = Utilisateur::addresseIP();
                 $Utilisateur->setAddresseIP($ip);
-                $Utilisateur->setAdmin(false);
-                $Utilisateur->setAutoriser(false);
-                $Utilisateur->setDroit_ajouter(false);
-                $Utilisateur->setDroit_supprimer(false);
+                $Utilisateur->setAdmin(0);
+                $Utilisateur->setAutoriser(0);
+                $Utilisateur->setDroit_ajouter(0);
+                $Utilisateur->setDroit_supprimer(0);
                 Utilisateur::ajouterUtilisateur($Utilisateur);
                 include("vue/Attente.php");
             }
@@ -130,14 +127,14 @@ $action = $_GET["action"] ;
             break;
         case "affich" :
             $lesUtilisateur=Utilisateur::afficherTous();
-            include("??") ;
+            include("vue/liste_utilisateurs_vue.php") ;
             break;
         case "seConnecter" :
-            session_start();
+            
             $rep=Utilisateur::verifier($_POST["login"], MD5($_POST["pass"]));
             if($rep==true){
                 $valider = Utilisateur::valider($_POST["login"], MD5($_POST["pass"]));
-                $_SESSION["autorisation"] = serialize($valider);
+                $_SESSION["connecte"] = $valider[0]->getId();
                 $id = $valider[0]->getId();
                 $ip = Utilisateur::addresseIP();
                 Utilisateur::changeraddresseIP($ip,$id);

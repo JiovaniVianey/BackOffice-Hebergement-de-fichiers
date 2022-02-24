@@ -26,31 +26,37 @@ use function PHPSTORM_META\type;
                             <p class="card-fichier-text">taille fichier</p>
                         </div>
                         <div class="col-md-2 d-flex align-items-center justify-content-center flex-column">
-                            <a href=""></a> <span class="py-auto fa-solid fa-download fa-2x basic-color"></span></a>
-                            <a href=""></a> <span class="fa-solid fa-trash fa-2x" style="color: #c56d6d;"></span></a>
+                            
+                            <a href="index.php?uc=fichier&fich=dotelecharger&tel=<?php echo $fichier->getId();?>&dos=<?php echo $fichier->getIdUtil()?>"></a> <span class="py-auto fa-solid fa-download fa-2x basic-color"></span></a>
+                            <a href="index.php?uc=fichier&fich=dotelecharger&supp=<?php echo $fichier->getId();?>&dos=<?php echo $fichier->getIdUtil()?>"></a> <span class="fa-solid fa-trash fa-2x" style="color: #c56d6d;"></span></a>
                         </div>
                     </div>  
                 </div>
         <?php
-        foreach ($lesFichiers as $fichier)
+        if (empty($lesFichiers))
         {
-            ?>
-                <div class="card-fichier">
-                    <img class="fichier-img my-2" src="../images/fileicon.png" alt="icon de fichier">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <h3 class="card-fichier-text"><?php echo $fichier -> getNom() ?></h3>
-                            <span class="card-fichier-text"><?php echo $fichier -> getDate() ?></span>
-                            <p class="card-fichier-text"><?php echo $fichier -> getTaille() ?></p>
-                        </div>
-                        <div class="col-md-2 d-flex align-items-center ">
-                            <a href=""></a> <span class="py-auto fa-solid fa-download fa-3x basic-color"></span></a>
-                        </div>
-                    </div>  
-                </div>
-
-                         
-            <?php
+            echo "<span>Vous n'avez pas uploadé de fichiers.</span>";
+        }
+       else
+       {
+            foreach ($lesFichiers as $fichier)
+            {
+                ?>
+                    <div class="card-fichier">
+                        <img class="fichier-img my-2" src="../images/fileicon.png" alt="icon de fichier">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h3 class="card-fichier-text"><?php echo $fichier -> getNom() ?></h3>
+                                <span class="card-fichier-text"><?php echo $fichier -> getDate() ?></span>
+                                <p class="card-fichier-text"><?php echo $fichier -> getTaille() ?></p>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-center ">
+                                <a href="index.php?uc=fichier&fich=dotelecharger&tel=<?php echo $fichier->getId();?>&dos=<?php echo $fichier->getIdUtil()?>"></a> <span class="py-auto fa-solid fa-download fa-2x basic-color"></span></a>
+                            </div>
+                        </div>  
+                    </div>       
+                <?php
+            }
         }
 ?>
         <button type="button" class="card-fichier" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:white; border:none">

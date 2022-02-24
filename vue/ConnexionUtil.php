@@ -17,9 +17,6 @@
 
 <center>
 <?php
-	if (session_status() === PHP_SESSION_NONE) {
-		session_start();
-	}
 	if (!empty($_SESSION['messageclear']))
     {
         ?>
@@ -45,7 +42,7 @@
 		<form class="box" method="POST" action="index.php?uc=utilisateur&action=seConnecter">
 		<h2>Connexion</h2>
 		<hr>
-		<input type='text' name='login' placeholder="Login" required="">
+		<input type='text' name='login' placeholder="Email" required="">
 		<input type='password' name='pass' placeholder="Mot de Passe" required="">
 		
 		<input type="submit" value="Se Connecter"/>
