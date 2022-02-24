@@ -54,7 +54,7 @@ $action = $_GET["action"] ;
             }
 			$token = $_GET["token"];
 			$securetoken = MD5($token);
-			Utilisateur::changerMdpOublie($securetoken);
+			Utilisateur::changerMdpOublie($securetoken,$_POST["pass1"]);
 			$_SESSION['messageclear'] = "Mot de Passe Modifié ! Connectez vous";
 			include("vue/connexionUtil.php");
 			

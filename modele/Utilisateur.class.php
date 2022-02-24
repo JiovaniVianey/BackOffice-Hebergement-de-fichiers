@@ -40,7 +40,7 @@ class Utilisateur
 
   // NOM
   public function getNom(){
-    return $this->nomUser;
+    return $this->nom;
   }
   public function setNom($nom){
     $this->nom = $nom;
@@ -229,6 +229,15 @@ class Utilisateur
     $req=MonPdo::getInstance()->prepare("update utilisateur set token = MD5(:token) where mail=:mail");
     $req->bindParam(':token',$token);
     $req->bindParam(':mail',$mail);
+    $req->execute();
+  }
+
+  // Maj Mdp (Mdp Oublie)
+
+  public static function changerMDPOublie($token,$mdp){
+    $req=MonPdo::getInstance()->prepare("update utilisateur set token = NULL, mdp = MD5(:mdp) where token=:token");
+    $req->bindParam(':token',MD5($token));
+    $req->bindParam(':mdp',$mdp);
     $req->execute();
   }
 
