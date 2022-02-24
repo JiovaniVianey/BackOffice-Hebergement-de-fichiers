@@ -41,7 +41,7 @@
 </center>
 
 	<body>
-      <form class="box" method="POST" action="index.php?uc=utilisateur&action=Inscrire">
+      <form class="box" method="POST" action="index.php?uc=utilisateur&action=sInscrire">
       <h2>Inscription</h2>
       
       <hr>

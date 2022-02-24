@@ -122,16 +122,27 @@ $action = $_GET["action"] ;
             if($rep==true){
                 $_SESSION["autorisation"] = valider($_POST["login"], md5($_POST["pass"]));
                 $lesFichier=Fichier::afficherParId($_SESSION["autorisation"]->getId());
-                include("accueil.php");
+                include("vue/accueil.php");
             }
             else{
                 $_SESSION['messageerror'] = "Login ou Mot de Passe Incorrect";
-                include("ConnexionUtil.php");
+                include("vue/ConnexionUtil.php");
+            }
+            break;
+        case "sInscrire" :
+            if($_POST["mdp1"] == $_POST["mdp2"]){
+                $_SESSION["autorisation"] = valider($_POST["login"], md5($_POST["pass"]));
+                $lesFichier=Fichier::afficherParId($_SESSION["autorisation"]->getId());
+                include("vue/Attente.php");
+            }
+            else{
+                $_SESSION['messageerror'] = "Mot de Passe Non Identique";
+                include("vue/Inscription.php");
             }
             break;
         case "deconnexion":
             Admin::deconnexion();
-            include("ConnexionUtil.php");
+            include("vue/ConnexionUtil.php");
             break;
     }
 ?>

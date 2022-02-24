@@ -298,7 +298,7 @@ unset($_SESSION['autorisation']);
 
 }
 public static function valider ($login,$mdp){
-  $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=:mdp");
+  $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=MD5(:mdp)");
 
   $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
   $req->bindParam('login',$login);
