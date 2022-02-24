@@ -128,6 +128,9 @@ $action = $_GET["action"] ;
             $rep=Admin::verifier($_POST["login"], md5($_POST["pass"]));
             if($rep==true){
                 $_SESSION["autorisation"] = Utilisateur::valider($_POST["login"], md5($_POST["pass"]));
+                $id = $_SESSION["autorisation"]->getId();
+                $ip = Utilisateur::addresseIP();
+                Utilisateur::changeraddresseIP($ip,$id);
                 $lesFichier=Fichier::afficherParId($_SESSION["autorisation"]->getId());
                 include("vue/accueil.php");
             }

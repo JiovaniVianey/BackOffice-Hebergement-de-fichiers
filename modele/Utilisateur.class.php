@@ -282,6 +282,8 @@ class Utilisateur
     $req->execute();
   }
 
+  // Validation et Vérification
+
   public static function verifier ($login,$mdp){
     $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=:mdp");
 
@@ -302,10 +304,6 @@ class Utilisateur
     return $rep;
   }
 
-  public static function deconnexion(){
-  unset($_SESSION['autorisation']);
-  }
-
   public static function valider ($login,$mdp){
     $req=MonPdo::getInstance()->prepare("select * from admin where mail=:login and mdp=MD5(:mdp)");
 
@@ -318,9 +316,25 @@ class Utilisateur
     return $leResultat;
   }
 
+  // Déconnexion
+  
+  public static function deconnexion(){
+    unset($_SESSION['autorisation']);
+  }
+
+  // Adresse IP
+
   public static function addresseIP(){
     $IP = $_SERVER['REMOTE_ADDR'];
     return $IP;
   }
+
+  public static function changeraddresseIP($ip,$id){
+    $req=MonPdo::getInstance()->prepare("update utilisateur set adresse_ip = (:ip), where id=(:id)");
+    $req->bindParam(':ip',$ip);
+    $req->bindParam(':id',$id);
+    $req->execute();
+  }
+
 }
 ?>
