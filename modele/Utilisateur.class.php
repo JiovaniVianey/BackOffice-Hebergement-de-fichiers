@@ -194,6 +194,15 @@ class Utilisateur
     return $leResultat;
   }
 
+  public static function trouverUtilisateurparToken($token){
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where token=:token");
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+    $req->bindParam(':token',MD5($token));
+    $req->execute();
+    $leResultat=$req->fetch();
+    return $leResultat;
+  }
+
   function getDossiers()
   {
     //la requète récupe les info de chaque user pr les lignes
@@ -230,6 +239,26 @@ class Utilisateur
     $req->bindParam(':token',$token);
     $req->bindParam(':mail',$mail);
     $req->execute();
+  }
+
+  // Vérfication Mdp Fort
+  public static function MDPFort($password){
+    $password = 'user-input-pass';
+    $valid = false;
+
+    // Validate password strength
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number    = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
+    if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+        $valid = false;
+    }else{
+        $valid = true;
+    }
+
+    return $valid;
   }
 
   // Maj Mdp (Mdp Oublie)

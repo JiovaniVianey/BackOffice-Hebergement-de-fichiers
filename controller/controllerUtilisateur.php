@@ -46,13 +46,23 @@ $action = $_GET["action"] ;
                 exit;
             }
 			
-			if (strlen($_POST["pass1"] < 8))
+			if (Utilisateur::MDPFort($_POST["pass1"]) == false)
             {
-                $_SESSION['messageerror'] = "Mot de Passe Invalide, Veuillez Saisir un mot de passe plus longs (8 Caractères Minimum)";
+                $_SESSION['messageerror'] = "Le mot de passe doit comporter au moins 8 caractères et doit inclure au moins une lettre majuscule, un chiffre et un caractère spécial.";
                 include("vue/FormChangementMdp.php");
                 exit;
             }
+
 			$token = $_GET["token"];
+            $ancienres = Utilisateur::trouverUtilisateurparToken($token);
+
+            if (MD5($_POST["pass1"]) == $ancienres->getMdp())
+            {
+                $_SESSION['messageerror'] = "Mot de Passe dejà utilisé. Veuillez en saisir un nouveau";
+                include("vue/FormChangementMdp.php");
+                exit;
+            }
+
 			$securetoken = MD5($token);
 			Utilisateur::changerMdpOublie($securetoken,$_POST["pass1"]);
 			$_SESSION['messageclear'] = "Mot de Passe Modifié ! Connectez vous";
