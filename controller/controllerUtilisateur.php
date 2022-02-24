@@ -82,7 +82,7 @@ $action = $_GET["action"] ;
                 $Utilisateur->setAutoriser(false);
                 $Utilisateur->setDroit_ajouter(false);
                 $Utilisateur->setDroit_supprimer(false);
-                Utilisateur::ajouter($Utilisateur);
+                Utilisateur::ajouterUtilisateur($Utilisateur);
                 include("vue/Attente.php");
             }
             else{
@@ -91,7 +91,7 @@ $action = $_GET["action"] ;
             }
             break;
         case "changeradmin" :
-            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["??"]);
+            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["id"]);
             Utilisateur::changeAdmin($Utilisateur);
             $lesUtilisateur=Utilisateur::afficherTous();
             include("??") ;
@@ -131,7 +131,7 @@ $action = $_GET["action"] ;
                 $id = $_SESSION["autorisation"]->getId();
                 $ip = Utilisateur::addresseIP();
                 Utilisateur::changeraddresseIP($ip,$id);
-                $lesFichier=Fichier::afficherParId($_SESSION["autorisation"]->getId());
+                $lesFichier=Fichier::afficherParId($id);
                 include("vue/accueil.php");
             }
             else{

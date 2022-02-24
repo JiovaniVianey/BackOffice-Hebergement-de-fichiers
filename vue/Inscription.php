@@ -15,7 +15,7 @@
         <h1>MyFile.com</h1>
       </header>
 
-      <center>
+<center>
 <?php
 	if (session_status() === PHP_SESSION_NONE) {
 		session_start();
@@ -47,16 +47,16 @@
       <hr>
 
       <label for="identifiant"> <h6> <b>Nom</b> </h6> </label>
-      <input type='text' name='nom' placeholder="Identifiant" required="">
+      <input type='text' name='nom' placeholder="Nom" required="">
 
       <label for="identifiant"> <h6> <b>Prénom</b> </h6> </label>
-      <input type='text' name='prenom' placeholder="Identifiant" required="">
+      <input type='text' name='prenom' placeholder="Prénom" required="">
       
       <label for="mail"> <h6> <b>E-mail</b> </h6> </label>
       <input type='email' name='mail' placeholder="E-mail" required="">
       
       <label for="mdp"> <h6> <b>Mot de Passe</b> </h6> </label>
-      <input type='password' name='mdp' placeholder="Mot de Passe" required="">
+      <input type='password' name='mdp1' placeholder="Mot de Passe" required="">
 
       <label for="mdp"> <h6> <b>Confirmez votre Mot de Passe</b> </h6> </label>
       <input type='password' name='mdp2' placeholder="Mot de Passe" required="">
