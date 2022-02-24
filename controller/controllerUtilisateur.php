@@ -140,5 +140,9 @@ $action = $_GET["action"] ;
             Admin::deconnexion();
             include("vue/ConnexionUtil.php");
             break;
+            case"afficheun":
+                Utilisateur::trouverUtilisateur($_GET["??"]);
+                include("??");
+            break;
     }
 ?>

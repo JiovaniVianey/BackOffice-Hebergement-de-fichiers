@@ -134,5 +134,9 @@ case "ajouter" :
                 $id = $_GET["id"];
                 $lesFichiers=Fichier::afficherParIdutil($id);
             break;
+            case"afficheun":
+                Fichier::trouverFichier($_GET["??"]);
+                include("??");
+            break;
 }
 ?>
