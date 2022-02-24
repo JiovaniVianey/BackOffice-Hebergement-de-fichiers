@@ -195,9 +195,9 @@ class Utilisateur
   }
 
   public static function trouverUtilisateurparToken($token){
-    $req=MonPdo::getInstance()->prepare("select * from utilisateur where token=:token");
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where token=MD5(:token)");
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
-    $req->bindParam(':token',MD5($token));
+    $req->bindParam(':token',$token);
     $req->execute();
     $leResultat=$req->fetch();
     return $leResultat;
@@ -264,8 +264,8 @@ class Utilisateur
   // Maj Mdp (Mdp Oublie)
 
   public static function changerMDPOublie($token,$mdp){
-    $req=MonPdo::getInstance()->prepare("update utilisateur set token = NULL, mdp = MD5(:mdp) where token=:token");
-    $req->bindParam(':token',MD5($token));
+    $req=MonPdo::getInstance()->prepare("update utilisateur set token = NULL, mdp = MD5(:mdp) where token=MD5(:token)");
+    $req->bindParam(':token',$token);
     $req->bindParam(':mdp',$mdp);
     $req->execute();
   }

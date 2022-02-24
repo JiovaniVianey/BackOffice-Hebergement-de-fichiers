@@ -46,12 +46,12 @@ $action = $_GET["action"] ;
                 exit;
             }
 			
-			if (Utilisateur::MDPFort($_POST["pass1"]) == false)
+			/*if (Utilisateur::MDPFort($_POST["pass1"]) == false)
             {
                 $_SESSION['messageerror'] = "Le mot de passe doit comporter au moins 8 caractères et doit inclure au moins une lettre majuscule, un chiffre et un caractère spécial.";
                 include("vue/FormChangementMdp.php");
                 exit;
-            }
+            }*/
 
 			$token = $_GET["token"];
             $ancienres = Utilisateur::trouverUtilisateurparToken($token);
