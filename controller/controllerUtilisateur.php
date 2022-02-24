@@ -26,8 +26,8 @@ $action = $_GET["action"] ;
             }
 
             $res = Utilisateur::trouverUtilisateurparMail($_POST["mail"]);
-            if (is_null($res)) {
-                $_SESSION['messageerror'] = "Email Non Enregistré";
+            if ($res == '') {
+                $_SESSION['messageerror'] = "Email Inconnu sur notre site";
                 include("vue/FormMdpOublie.php");
             }
             else
