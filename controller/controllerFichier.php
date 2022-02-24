@@ -133,6 +133,28 @@ case "ajouter" :
             case "dossier":
                 $id = $_GET["id"];
                 $lesFichiers=Fichier::afficherParIdutil($id);
+                if(($_SESSION["autorisation"]->getId() == 0){
+                    include("??");
+                }
+                else if($_SESSION["autorisation"]->getId() == $lesFichiers[0]->getIdutil()){
+                    $ut=trouverUtilisateur($_SESSION["autorisation"]->getId();)
+                    $da=$ut->getDroit_ajouter();
+                    $ds=$ut->getDroit_supprimer();
+                    if($da=="true"&&$ds=="true"){
+                        include("??") ;      
+                    } 
+                    else if($da=="false"&& $ds=="true"){
+                        include("??") ;
+                    }
+                    else if($da=="true"&& $ds=="false"){
+                        include("??") ;
+                    }
+                    else if($da=="false"&& $ds=="false"){
+                        include("??") ;
+                    }
+                } else{
+                    include("??");
+                }
             break;
             case"afficheun":
                 Fichier::trouverFichier($_GET["??"]);
