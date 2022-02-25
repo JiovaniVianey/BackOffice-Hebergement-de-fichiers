@@ -210,3 +210,11 @@ header a:hover
     background-color: white;
     border: solid #0099cc 2px;
 }
+
+.btn-list
+{
+    color: #383838;
+    border-radius: 7px;
+    padding: 3px;
+    box-shadow: 0 0 5px gray;
+}

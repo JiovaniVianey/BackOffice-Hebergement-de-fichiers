@@ -5,21 +5,16 @@
         include("header.php");
     ?>
     <div class="fichiers-section">
-        <nav>
-            <form action="post">
-                <input type="search">
-                <button>Filtrer</button>
-            </form>
-        </nav>
-        <a href="">
-            <div class="card-dossier">
+        
+        
+            <!-- <div class="card-dossier">
                 <img class="dossier-img my-2" src="images/folder-img.png" alt="icon de fichier">
                 <div class="row">
 
                         <h3 class="card-fichier-text">Nom du propriétaire</h3>
 
                 </div>  
-            </div>
+            </div> -->
             
         <?php
         if (empty($lesDossiers))
@@ -48,7 +43,7 @@
                 }
             }
             ?>
-        </a>
+        
     </div>
 </div>
 

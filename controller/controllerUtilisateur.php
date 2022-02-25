@@ -125,6 +125,8 @@ $action = $_GET["action"] ;
             break;
         case "affich" :
             $lesUtilisateurs=Utilisateur::afficherTous();
+            $message = "Utilisateurs non-autorisés";
+            $lien = "index.php?uc=utilisateur&action=switchauto";
             include("vue/liste_utilisateurs_vue.php") ;
             break;
         case "seConnecter" :
@@ -138,10 +140,17 @@ $action = $_GET["action"] ;
                 Utilisateur::changeraddresseIP($ip,$id);
                 
                 $resultat = Utilisateur::trouverUtilisateur($idConnecte);
-            
                 $connectedUser = $resultat;
-                $lesDossiers = Utilisateur::getDossiers();
-                include("vue/accueil.php");
+                if($resultat->getAutoriser() == 0)
+                {
+                    include("vue/Attente.php");
+                }
+                else
+                {
+                    
+                    $lesDossiers = Utilisateur::getDossiers();
+                    include("vue/accueil.php");
+                }
             }
             else{
                 $_SESSION['messageerror'] = "Login ou Mot de Passe Incorrect";
@@ -157,9 +166,11 @@ $action = $_GET["action"] ;
             $userProfile = Utilisateur::trouverUtilisateur($_GET["id"]);
             include("vue/page_utilisateur.php");
         break;
-        case"affichnonauto":
-            Utilisateur::afficherNonautorise();
-            include("??");
+        case"switchauto":
+            $lesUtilisateurs = Utilisateur::afficherNonautorise();
+            $message = "Tous les utilisateurs";
+            $lien = "index.php?uc=utilisateur&action=affich";
+            include("vue/liste_utilisateurs_vue.php");
         break;
     }
 ?>

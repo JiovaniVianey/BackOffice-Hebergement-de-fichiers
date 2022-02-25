@@ -13,7 +13,7 @@
 </html>
 
 <?php
-    if ($Utilisateur->getAutoriser() == true){
+    if ($connectedUser->getAutoriser() == true){
         header('index.php');
     }
 ?>

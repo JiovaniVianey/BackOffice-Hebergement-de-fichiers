@@ -11,12 +11,9 @@ use function PHPSTORM_META\type;
     ?>
     <div class="fichiers-section">
         <nav>
-            <form action="post">
-                <input type="search">
-                <button>Filtrer</button>
-            </form>
+            
         </nav>
-        <div class="card-fichier">
+        <!-- <div class="card-fichier">
                     <img class="fichier-img my-2" src="images/fileicon.png" alt="icon de fichier">
                     <div class="row">
                         <div class="col-md-9">
@@ -30,7 +27,7 @@ use function PHPSTORM_META\type;
                             <a href=""></a> <span class="fa-solid fa-trash fa-2x" style="color: #c56d6d;"></span></a>
                         </div>
                     </div>  
-                </div>
+                </div> -->
         <?php
         if (empty($lesFichiers))
         {
@@ -46,10 +43,12 @@ use function PHPSTORM_META\type;
                         <div class="row">
                             <div class="col-md-9">
                                 <h3 class="card-fichier-text"><?php echo $fichier -> getNom() ?></h3>
-
+                                <br>
                                 <p class="card-fichier-text"><?php echo $fichier -> getTaille() ?> ko</p>
+                                
+                                
                             </div>
-                            <div class="col-md-2 d-flex align-items-center ">
+                            <div class="col-md-2 d-flex flex-column align-items-center ">
                                 <a href="index.php?uc=fichier&fich=dotelecharger&tel=<?php echo $fichier->getId();?>&dos=<?php echo $fichier->getIdUtil()?>"> <span class="py-auto fa-solid fa-download fa-2x basic-color"></span></a>
                                 <?php
                                     if (($connectedUser->getDroit_supprimer() == 1 & $connectedUser->getId() == $_GET['dos'])|| $connectedUser->getAdmin()==1)

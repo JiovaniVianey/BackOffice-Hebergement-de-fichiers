@@ -14,7 +14,7 @@
           //       echo '<a href="">Mes Fichiers</a>';
           //   }
         ?>
-        <a href="">Mes Fichiers</a>
+        <a class="btn-list" href="<?php echo $lien ?>"><?php echo $message ?></a>
       </div>
           
           
@@ -34,15 +34,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>blablabla@bloblo.com</td>
-      <td>@mdo</td>
-      
-      <td><a href="">Supprimer l'utilisateur</a></td>
-    </tr>
+    
     
 
     <!-- faut faire un form avec la boucle à l'interieur. -->

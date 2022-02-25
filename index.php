@@ -18,7 +18,6 @@ include_once("head.php");
         }
         else
         {
-            echo $_SESSION["connecte"];
             $id = $_SESSION['connecte'];
             $resultat = Utilisateur::trouverUtilisateur($id);
             
@@ -35,7 +34,7 @@ include_once("head.php");
         }
         else
         {
-            echo $_SESSION["connecte"];
+            
             $id = $_SESSION['connecte'];
             $resultat = Utilisateur::trouverUtilisateur($id);
             

@@ -9,7 +9,7 @@
     /* color: rgb(34, 34, 34); */
     text-decoration: none;
     padding : 5px; border-radius:10px;
-    border: solid #ff00ff;
+    border: solid 2px #3d003d;
     border-width: 2px;
     box-shadow: 1px 1px 3px rgba(77, 77, 77, 0.472);
 }
