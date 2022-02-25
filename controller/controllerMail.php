@@ -71,13 +71,13 @@ switch($mailaction){
         // Destinataires (Admin)
         $lesMail = Utilisateur::trouverAdmin();
         foreach($lesMail as $mailDestinataire){
-            $envoi_mail->addAddress($mailDestinataire->mail);
-            //echo $mailDestinataire->email;
+            $envoi_mail->addAddress($mailDestinataire->getMail());
+            //echo $mailDestinataire->getMail();
             //echo "<br>";
         }
 
         // Informations de l'inscrit
-        $util = Utilisateur::verifier($_POST["mail"], MD5($_POST["mdp1"]));
+        $util = Utilisateur::trouverInscrit($_POST["mail"], MD5($_POST["mdp1"]));
 
         // Objet du Mail
         $envoi_mail->Subject = 'MyFile.com - Nouvel Inscription';
@@ -88,7 +88,7 @@ switch($mailaction){
         $body = "<b> <font size=\"3\"> Vous avez un nouvel utilisateur inscrit sur MyFile.com </font> </b>";
         $body .= "<p> <font size=\"2\"> Informations: <hr> Nom: ".$util->getNom()." <br> Prénom: ".$util->getPrenom()." <br> Adresse Mail: ".$util->getMail()." <br> Adresse IP: ".$util->getAddresseIP()."  </font> </p>";
         $body .= "<hr> Afin de gérer le nouveau venu: <br>";
-        $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action='> Cliquez ici </a>";
+        $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=affich'> Cliquez ici </a>";
 
         // Corps du Mail (Non HTML)
         $text_body  = "Vous avez un nouvel utilisateur inscrit sur MyFile.com \n\n";
@@ -97,8 +97,8 @@ switch($mailaction){
         $text_body .= "Prénom: ".$util->getPrenom()." \n";
         $text_body .= "Adresse Mail: ".$util->getMail()." \n";
         $text_body .= "Adresse IP: ".$util->getAddresseIP()." \n\n";
-        $text_body .= "Afin de gérer le nouveau venu: \n";
-        $text_body .= "http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=";
+        $text_body .= "Afin de gérer le nouveau venu, Cliquez sur le lien ci dessous: \n";
+        $text_body .= "http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=affich";
         break;
 }
 
@@ -115,4 +115,9 @@ if ($mailaction == "MdpOublie")
         $_SESSION['messageerror'] = "Message Non Envoyé";
     }
 }
+else
+{
+$envoi_mail->send();
+}
+
 ?>
