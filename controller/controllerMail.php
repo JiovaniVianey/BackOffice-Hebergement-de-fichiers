@@ -46,7 +46,7 @@ switch($mailaction){
         $envoi_mail->addAddress($mailDestinataire);
 
         // Objet du Mail
-        $envoi_mail->Subject = 'Réinitialisation de Mot De Passe';
+        $envoi_mail->Subject = 'MyFile.com - Réinitialisation de Mot De Passe';
 
         // Corps du Mail (HTML)
         $envoi_mail->isHTML(true);
@@ -67,25 +67,39 @@ switch($mailaction){
         $text_body .= "Cliquez ici afin de réinitiailiser votre Mot de passe: \n\n";
         $text_body .= "http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=changementMdp&token=".$token."";
         break;
-    /*case "NotifInscrit":
+    case "NotifInscrit":
+        // Destinataires (Admin)
+        $lesMail = Utilisateur::trouverAdmin();
+        foreach($lesMail as $mailDestinataire){
+            $envoi_mail->addAddress($mailDestinataire->mail);
+            //echo $mailDestinataire->email;
+            //echo "<br>";
+        }
+
+        // Informations de l'inscrit
+        $util = Utilisateur::verifier($_POST["mail"], MD5($_POST["mdp1"]));
+
         // Objet du Mail
-        $envoi_mail->Subject = 'Nouvel Inscription';
+        $envoi_mail->Subject = 'MyFile.com - Nouvel Inscription';
 
         // Corps du Mail (HTML)
         $envoi_mail->isHTML(true);
 
         $body = "<b> <font size=\"3\"> Vous avez un nouvel utilisateur inscrit sur MyFile.com </font> </b>";
-        $body .= "<p> <font size=\"2\"> Informations: <hr>".$util->getPrenom()."</font> </p>";
-        $body .= "<hr> Cordialement, <br>";
-        $body .= "Cliquez Ici afin de gérer le nouveau venu";
+        $body .= "<p> <font size=\"2\"> Informations: <hr> Nom: ".$util->getNom()." <br> Prénom: ".$util->getPrenom()." <br> Adresse Mail: ".$util->getMail()." <br> Adresse IP: ".$util->getAddresseIP()."  </font> </p>";
+        $body .= "<hr> Afin de gérer le nouveau venu: <br>";
+        $body .= "<hr> <a href='http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action='> Cliquez ici </a>";
 
         // Corps du Mail (Non HTML)
-        $text_body  = "Immeuble 6 Place Jean Giraudoux, 94000 Créteil \n\n";
-        $text_body .= "Information: \n\n".$texte." \n\n";
-        $text_body .= "Cordialement, \n";
-        $text_body .= "Votre ".$nomContact;
+        $text_body  = "Vous avez un nouvel utilisateur inscrit sur MyFile.com \n\n";
+        $text_body .= "Informations: \n\n";
+        $text_body .= "Nom: ".$util->getNom()." \n";
+        $text_body .= "Prénom: ".$util->getPrenom()." \n";
+        $text_body .= "Adresse Mail: ".$util->getMail()." \n";
+        $text_body .= "Adresse IP: ".$util->getAddresseIP()." \n\n";
+        $text_body .= "Afin de gérer le nouveau venu: \n";
+        $text_body .= "http://127.0.0.1/projet-fichier-administration/index.php?uc=utilisateur&action=";
         break;
-    }*/
 }
 
 $envoi_mail->Body    = $body;
@@ -93,10 +107,12 @@ $envoi_mail->AltBody = $text_body;
 $envoi_mail->CharSet = "UTF-8";
 
 // Vérification et Envoi du Mail
-if ($envoi_mail->send()) {
-    $_SESSION['messageclear'] = "Message Envoyé";
-} else {    
-    $_SESSION['messageerror'] = "Message Non Envoyé";
+if ($mailaction == "MdpOublie")
+{
+    if ($envoi_mail->send()) {
+        $_SESSION['messageclear'] = "Message Envoyé";
+    } else {    
+        $_SESSION['messageerror'] = "Message Non Envoyé";
+    }
 }
-
 ?>
