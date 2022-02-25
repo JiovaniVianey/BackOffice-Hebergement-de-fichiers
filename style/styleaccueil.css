@@ -73,7 +73,7 @@ header h3
     color: rgb(110, 110, 110);
 }
 
-header a
+.header-btn
 {
     background-color: #1ac6ff;
     color: white;
@@ -83,7 +83,11 @@ header a
     margin-right: 30px;
     text-decoration: none;
     transition: 0.2s;
-    
+}
+
+header a
+{
+    text-decoration: none;
 }
 header a:hover
 {

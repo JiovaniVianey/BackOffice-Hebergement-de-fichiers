@@ -9,6 +9,7 @@ include_once("modele/Utilisateur.class.php");
 include_once("head.php");
 
 
+
     if(empty($_GET["uc"]))
     {
         if( !isset($_SESSION['connecte']) )
@@ -22,6 +23,7 @@ include_once("head.php");
             $resultat = Utilisateur::trouverUtilisateur($id);
             
             $connectedUser = $resultat;
+            $lesDossiers = Utilisateur::getDossiers();
             include('vue/accueil.php');
         }
         
@@ -29,7 +31,7 @@ include_once("head.php");
     else {
         if( !isset($_SESSION['connecte']) )
         {
-            include("vue/ConnexionUtil.php");
+            
         }
         else
         {

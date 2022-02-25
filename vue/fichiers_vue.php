@@ -52,9 +52,11 @@ use function PHPSTORM_META\type;
                             <div class="col-md-2 d-flex align-items-center ">
                                 <a href="index.php?uc=fichier&fich=dotelecharger&tel=<?php echo $fichier->getId();?>&dos=<?php echo $fichier->getIdUtil()?>"> <span class="py-auto fa-solid fa-download fa-2x basic-color"></span></a>
                                 <?php
-                                    if (($connectedUser->getDroit_supprimer() == 1 & $connectedUser->getId() == $_GET['affich'])|| $connectedUser->getAdmin()==1)
+                                    if (($connectedUser->getDroit_supprimer() == 1 & $connectedUser->getId() == $_GET['dos'])|| $connectedUser->getAdmin()==1)
                                     {
-                                        echo '<a href="index.php?uc=fichier&fich=dosupprimer&supp=<?php echo $fichier->getId();?>&dos=<?php echo $fichier->getIdUtil()?>"> <span class="fa-solid fa-trash fa-2x" style="color: #c56d6d;"></span></a>';
+                                        echo '
+                                        <a href="index.php?uc=fichier&fich=dosupprimer&supp='.$fichier->getId().'&dos='.$fichier->getIdUtil().'"> <span class="fa-solid fa-trash fa-2x" style="color: #c56d6d;"></span></a>
+                                        ';
                                     }
                                 ?>
 
@@ -67,13 +69,13 @@ use function PHPSTORM_META\type;
 ?>
 
 <?php
-    if (($connectedUser->getDroit_ajouter() == 1 & $connectedUser->getId() == $_GET['affich'])|| $connectedUser->getAdmin()==1)
+    if (($connectedUser->getDroit_ajouter() == 1 & $connectedUser->getId() == $_GET['dos'])|| $connectedUser->getAdmin()==1)
     {
         echo '<button type="button" class="card-fichier" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:white; border:none">
         <div class="mx-auto my-auto" href="" data-msg="Ajouter un fichier">
             <span class="fa-solid fa-plus fa-7x basic-color plus"></span> 
         </div>
-        </button>';
+    </button>';
     }
 ?>
         
@@ -95,7 +97,7 @@ use function PHPSTORM_META\type;
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="index.php?uc=fichier&fich=ajouter" method="POST" enctype="multipart/form-data">
+        <form action="index.php?uc=fichier&fich=doajouter&dos=<?php echo $connectedUser->getId();?>" method="POST" enctype="multipart/form-data">
             <input type="file" name="uploaded_file" required>
         
       </div>

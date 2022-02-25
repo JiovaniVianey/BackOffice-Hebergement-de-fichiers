@@ -1,7 +1,5 @@
-<!doctype html>
-
 <?php
-    include("head.php");
+	include('navbar.php');
 ?>
 
 <html>

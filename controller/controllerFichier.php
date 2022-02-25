@@ -60,7 +60,7 @@ case "ajouter" :
         break;
         case "dossier" :
 
-            $lesFichiers=Fichier::afficherParIdutil($_GET["affich"]);
+            $lesFichiers=Fichier::afficherParIdutil($_GET["dos"]);
             include("vue/fichiers_vue.php") ;
         break;
         case "doajouter" :
@@ -91,12 +91,12 @@ case "ajouter" :
                 //remplacement des espaces
                 $fileName = str_replace(' ', '', $_FILES['uploaded_file']['name']);
                 //vérification de l'existance du dossier
-                $nomDossier = '../fichier/'.$connecteduser->getNom().''.$connecteduser->getPrenom().''.$connecteduser->getId(); 
-                if ( !is_dir( "../fichiers/$nomDossier" ) ) {
-                    mkdir("../fichiers/$nomDossier");
+                $nomDossier = $connectedUser->getNom().'_'.$connectedUser->getPrenom().'_'.$connectedUser->getId(); 
+                if ( !is_dir( "fichiers/$nomDossier" ) ) {
+                    mkdir("fichiers/$nomDossier");
                 }
         
-                $filePath = "../fichiers/$nomDossier/".$fileName;
+                $filePath = "fichiers/$nomDossier/".$fileName;
                 move_uploaded_file($tmpName, $filePath);
             }
             $fichier = new Fichier();
@@ -105,7 +105,7 @@ case "ajouter" :
             
             $fichier->setTaille($fileSize);
             $fichier->setType($fileExt);
-            echo $fichier;
+            $fichier->setIdutil($_SESSION['connecte']);
             Fichier::ajouter($fichier);
             $lesFichiers=Fichier::afficherParIdutil($_SESSION['connecte']);
             include("vue/fichiers_vue.php") ;
@@ -132,7 +132,7 @@ case "ajouter" :
                 $lesFichiers=Fichier::afficherParIdutil($_GET["dos"]);
                 include("vue/fichiers_vue.php"); 
             break;
-            case "dossier":
+            case "dossier2":
                 $id = $_GET["id"];
                 $lesFichiers=Fichier::afficherParIdutil($id);
                 if($_SESSION["autorisation"]->getId() == 0)

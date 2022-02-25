@@ -138,6 +138,10 @@ $action = $_GET["action"] ;
                 $id = $valider[0]->getId();
                 $ip = Utilisateur::addresseIP();
                 Utilisateur::changeraddresseIP($ip,$id);
+                
+                $resultat = Utilisateur::trouverUtilisateur($idConnecte);
+            
+                $connectedUser = $resultat;
                 $lesDossiers = Utilisateur::getDossiers();
                 include("vue/accueil.php");
             }
@@ -147,8 +151,9 @@ $action = $_GET["action"] ;
             }
             break;
         case "deconnexion":
-            Admin::deconnexion();
+            Utilisateur::deconnexion();
             include("vue/ConnexionUtil.php");
+
             break;
         case"afficheun":
             Utilisateur::trouverUtilisateur($_GET["??"]);

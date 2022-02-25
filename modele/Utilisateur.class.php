@@ -236,7 +236,9 @@ class Utilisateur
     GROUP BY idutil';
 
     $result = MonPdo::getInstance()->query($sql);
+    $result->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
     $lesDossiers = $result->fetchAll();
+    
     return $lesDossiers;
   }
 
@@ -332,7 +334,7 @@ class Utilisateur
   // Déconnexion
   
   public static function deconnexion(){
-    unset($_SESSION['autorisation']);
+    unset($_SESSION['connecte']);
   }
 
   // Adresse IP
