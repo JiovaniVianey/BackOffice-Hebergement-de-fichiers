@@ -104,7 +104,7 @@ class Utilisateur
  }
 
   public static function ajouterUtilisateur(Utilisateur $utilisateur){
-    $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mdp,mail,adresse_ip,admin,autorise,droit_ajouter,droit_supprimer) values(:prenom,:nom,MD5(:mdp),:mail,:ip,:admin,:autorise,:droit_ajouter,:droit_supprimer)");
+    $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mdp,mail,admin,autorise,droit_ajouter,droit_supprimer) values(:prenom,:nom,MD5(:mdp),:mail,:admin,:autorise,:droit_ajouter,:droit_supprimer)");
     $prenom=$utilisateur->getPrenom();
     $req->bindParam(':prenom',$prenom);
     $nom=$utilisateur->getNom();
@@ -113,8 +113,6 @@ class Utilisateur
     $req->bindParam(':mail',$mail);
     $mdp=$utilisateur->getMdp();
     $req->bindParam(':mdp',$mdp);
-    $ip=$utilisateur->getAddresseIP();
-    $req->bindParam(':ip',$ip);
     $admin=$utilisateur->getAdmin();
     $req->bindParam(':admin',$admin);
     $autoriser=$utilisateur->getAutoriser();
@@ -350,12 +348,30 @@ class Utilisateur
     $req->bindParam(':id',$id);
     $req->execute();
   }
+
+  public static function changeraddresseIPInscrit($ip,$mail,$mdp){
+    $req=MonPdo::getInstance()->prepare("update utilisateur set adresse_ip = :ip where mail=:mail and mdp=:mdp");
+    $req->bindParam(':ip',$ip);
+    $req->bindParam(':mail',$mail);
+    $req->bindParam(':mdp',$mdp);
+    $req->execute();
+  }
+
   public static function afficherNonautorise(){
-    $req=MonPdo::getInstance()->prepare("select*from utilisateur where autorise= 0");
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where autorise=0");
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
     $req->execute();
     $lesResultats=$req->fetchAll();
     return $lesResultats;
   }
+
+  public static function trouverAdmin(){
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where admin=1");
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+    $req->execute();
+    $leResultat=$req->fetch();
+    return $leResultat;
+  }
+
 }
 ?>

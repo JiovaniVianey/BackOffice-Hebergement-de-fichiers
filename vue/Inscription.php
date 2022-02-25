@@ -41,7 +41,7 @@
 </center>
 
 	<body>
-      <form class="box" method="POST" action="index.php?uc=utilisateur&action=Ajout">
+      <form class="box" method="POST" action="index.php?uc=utilisateur&action=Ajout&mailaction=NotifInscrit">
       <h2>Inscription</h2>
       
       <hr>

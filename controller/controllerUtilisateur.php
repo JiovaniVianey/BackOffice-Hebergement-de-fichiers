@@ -67,8 +67,6 @@ $action = $_GET["action"] ;
 			
             break;
         case "Ajout" :
-
-
             if($_POST["mdp1"] == $_POST["mdp2"]){
                 if (Utilisateur::verifier($_POST["mail"],$_POST["mdp1"])){
                     $_SESSION['messageerror'] = "Compte Dejà Existant";
@@ -80,13 +78,14 @@ $action = $_GET["action"] ;
                 $Utilisateur->setNom($_POST["nom"]);
                 $Utilisateur->setMdp($_POST["mdp1"]);
                 $Utilisateur->setMail($_POST["mail"]);
-                $ip = Utilisateur::addresseIP();
-                $Utilisateur->setAddresseIP($ip);
                 $Utilisateur->setAdmin(0);
                 $Utilisateur->setAutoriser(0);
                 $Utilisateur->setDroit_ajouter(0);
                 $Utilisateur->setDroit_supprimer(0);
                 Utilisateur::ajouterUtilisateur($Utilisateur);
+                $ip = Utilisateur::addresseIP();
+                Utilisateur::changeraddresseIPInscrit($ip,$_POST["mail"],MD5($_POST["mdp1"]));
+                include("controller/controllerMail");
                 include("vue/Attente.php");
             }
             else{
@@ -129,7 +128,6 @@ $action = $_GET["action"] ;
             include("vue/liste_utilisateurs_vue.php") ;
             break;
         case "seConnecter" :
-            
             $rep=Utilisateur::verifier($_POST["login"], MD5($_POST["pass"]));
             if($rep==true){
                 $valider = Utilisateur::valider($_POST["login"], MD5($_POST["pass"]));
