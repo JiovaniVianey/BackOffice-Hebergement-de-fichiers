@@ -1,14 +1,10 @@
- <!-- à retirer une fois les liens et includes terminés -->
- <link rel="stylesheet" href="../style/styleaccueil.css">
-    <link rel="stylesheet" href="../style/stylelisteutilisateurs.css">
- <?php
-    include("../head.php");
-    
-?>
+
 
 <div class="wrapper">
   <header>
-    <h1>MyFile.com</h1>
+  <a href="index.php">
+        <h1>MyFile.com</h1>
+    </a>
           
       <h3>Liste des utilisateurs </h3>
       <div class="d-flex flex-row flex-wrap">
@@ -33,8 +29,7 @@
       <th scope="col">Nom</th>
       <th scope="col">Email</th>
       <th scope="col">Dèrnière IP</th>
-      <th scope="col">Ajout de fichiers</th>
-      <th scope="col">Suppression de fichiers</th>
+      
       <th></th>
     </tr>
   </thead>
@@ -45,8 +40,7 @@
       <td>Otto</td>
       <td>blablabla@bloblo.com</td>
       <td>@mdo</td>
-      <td><input type="checkbox"></td>
-      <td><input type="checkbox"></td>
+      
       <td><a href="">Supprimer l'utilisateur</a></td>
     </tr>
     
@@ -62,10 +56,10 @@
                 <th scope="row"><?php echo $uti -> getId(); ?></th>
                 <td><?php echo $uti -> getPrenom(); ?></td>
                 <td><?php echo $uti -> getNom(); ?></td>
-                <td><?php echo $uti -> getEmail(); ?></td>
-                <td><?php echo $uti -> getIp(); ?></td>
-                <td><?php echo $uti -> getAjout(); ?></td>
-                <td><?php echo $uti -> getSup(); ?></td>
+                <td><?php echo $uti -> getMail(); ?></td>
+                <td><?php echo $uti -> getAddresseIP(); ?></td>
+                <td><a href="index.php?uc=utilisateur&action=afficheun&id=<?php echo $uti->getId(); ?>">En savoir plus</a></td>
+                
               </tr>
 
                          

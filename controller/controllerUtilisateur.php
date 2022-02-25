@@ -96,35 +96,35 @@ $action = $_GET["action"] ;
         case "changeradmin" :
             $Utilisateur=Utilisateur::trouverUtilisateur($_GET["id"]);
             Utilisateur::changeAdmin($Utilisateur);
-            $lesUtilisateur=Utilisateur::afficherTous();
-            include("??") ;
+            $userProfile = Utilisateur::trouverUtilisateur($_GET["id"]);
+            include("vue/page_utilisateur.php") ;
             break;
         case "changerautoriser" :
-            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["??"]);
-            Utilisateur::changeAutoriser($Utilisateur);
-            $lesUtilisateur=Utilisateur::afficherTous();
-            include("??") ;
+            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["id"]);
+            Utilisateur::changeAutorisation($Utilisateur);
+            $userProfile = Utilisateur::trouverUtilisateur($_GET["id"]);
+            include("vue/page_utilisateur.php") ;
             break;
         case "changerdroit_ajout" :
-            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["??"]);
+            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["id"]);
             Utilisateur::changeDroit_ajouter($Utilisateur);
-            $lesUtilisateur=Utilisateur::afficherTous();
-            include("??") ;
+            $userProfile = Utilisateur::trouverUtilisateur($_GET["id"]);
+            include("vue/page_utilisateur.php") ;
             break;
         case "changerdroit_supprimer" :
-            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["??"]);
+            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["id"]);
             Utilisateur::changeDroit_supprimer($Utilisateur);
-            $lesUtilisateur=Utilisateur::afficherTous();
-            include("??") ;
+            $userProfile = Utilisateur::trouverUtilisateur($_GET["id"]);
+            include("vue/page_utilisateur.php") ;
             break;
         case "supprimer" :
-            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["??"]);
+            $Utilisateur=Utilisateur::trouverUtilisateur($_GET["id"]);
             Utilisateur::supprimerUtilisateur($Utilisateur);
-            $lesUtilisateur=Utilisateur::afficherTous();
+            $userProfile = Utilisateur::trouverUtilisateur($_GET["id"]);
             include("??") ;
             break;
         case "affich" :
-            $lesUtilisateur=Utilisateur::afficherTous();
+            $lesUtilisateurs=Utilisateur::afficherTous();
             include("vue/liste_utilisateurs_vue.php") ;
             break;
         case "seConnecter" :
@@ -154,8 +154,8 @@ $action = $_GET["action"] ;
 
             break;
         case"afficheun":
-            Utilisateur::trouverUtilisateur($_GET["??"]);
-            include("??");
+            $userProfile = Utilisateur::trouverUtilisateur($_GET["id"]);
+            include("vue/page_utilisateur.php");
         break;
         case"affichnonauto":
             Utilisateur::afficherNonautorise();

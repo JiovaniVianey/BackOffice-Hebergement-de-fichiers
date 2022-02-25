@@ -104,7 +104,7 @@ class Utilisateur
  }
 
   public static function ajouterUtilisateur(Utilisateur $utilisateur){
-    $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mdp,mail,admin,autorise,droit_ajouter,droit_supprimer) values(:prenom,:nom,MD5(:mdp),:mail,:admin,:autorise,:droit_ajouter,:droit_supprimer)");
+    $req=MonPdo::getInstance()->prepare("insert into utilisateur(prenom,nom,mdp,mail,admin,autoriser,droit_ajouter,droit_supprimer) values(:prenom,:nom,MD5(:mdp),:mail,:admin,:autorise,:droit_ajouter,:droit_supprimer)");
     $prenom=$utilisateur->getPrenom();
     $req->bindParam(':prenom',$prenom);
     $nom=$utilisateur->getNom();
@@ -144,7 +144,7 @@ class Utilisateur
   public static function changeAutorisation(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set autoriser= :autoriser where id=:id"); //il faudra voir bdd
     $autoriser=$utilisateur->getAutoriser();
-    $autoriser = !$autoriser;
+    $autoriser = (int)!$autoriser;
     $req->bindParam(':autoriser',$autoriser);
     $id=$utilisateur->getId();
     $req->bindParam(':id', $id);
@@ -154,7 +154,7 @@ class Utilisateur
   public static function changeAdmin(Utilisateur $utilisateur){
     $req=MonPdo::getInstance()->prepare("update utilisateur set admin = :admin where id=:id");     // il faudra voir avec la base de données
     $admin=$utilisateur->getAdmin();
-    $admin=!$admin;
+    $admin=(int)!$admin;
     $req->bindParam(':admin',$admin);
     $id=$utilisateur->getId();
     $req->bindParam(':id',$id);
@@ -165,7 +165,7 @@ class Utilisateur
     $req=MonPdo::getInstance()->prepare("update utilisateur set droit_ajouter= :droit_ajouter where id=:id");   // il faudra voir avec la base de données
     $droit_ajouter=$utilisateur->getDroit_ajouter();
     $req->bindParam(':droit_ajouter',$droit_ajouter);
-    $droit_ajouter=!$droit_ajouter;
+    $droit_ajouter=(int)!$droit_ajouter;
     $id=$utilisateur->getId();
     $req->bindParam(':id',$id);
     $req->execute();
@@ -175,7 +175,7 @@ class Utilisateur
     $req=MonPdo::getInstance()->prepare("update utilisateur set droit_supprimer= :droit_supprimer where id=:id");   // il faudra voir avec la base de données
     $droit_supprimer=$utilisateur->getDroit_supprimer();
     $req->bindParam(':droit_supprimer',$droit_supprimer);
-    $droit_supprimer=!$droit_supprimer;
+    $droit_supprimer=(int)!$droit_supprimer;
     $id=$utilisateur->getId();
     $req->bindParam(':id',$id);
     $req->execute();
