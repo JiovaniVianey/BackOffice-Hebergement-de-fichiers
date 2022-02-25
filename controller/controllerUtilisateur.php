@@ -134,7 +134,7 @@ $action = $_GET["action"] ;
             if($rep==true){
                 $valider = Utilisateur::valider($_POST["login"], MD5($_POST["pass"]));
                 $idConnecte = $valider[0]->getId();
-                $_SESSION["connecte"] = $idConnecte;
+                
                 $id = $valider[0]->getId();
                 $ip = Utilisateur::addresseIP();
                 Utilisateur::changeraddresseIP($ip,$id);
@@ -147,7 +147,7 @@ $action = $_GET["action"] ;
                 }
                 else
                 {
-                    
+                    $_SESSION["connecte"] = $idConnecte;
                     $lesDossiers = Utilisateur::getDossiers();
                     include("vue/accueil.php");
                 }

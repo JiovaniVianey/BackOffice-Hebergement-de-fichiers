@@ -218,3 +218,14 @@ header a:hover
     padding: 3px;
     box-shadow: 0 0 5px gray;
 }
+
+.accueilbtn
+{
+    font-size: 1.5rem;
+    color: white;
+    background-color: #33CCFF;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+    padding: 10px;
+    top:  400px;
+}
