@@ -319,7 +319,6 @@ class Utilisateur
 
   public static function valider ($login,$mdp){
     $req=MonPdo::getInstance()->prepare("select * from utilisateur where mail=:login and mdp=:mdp");
-
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
     $req->bindParam('login',$login);
     $req->bindParam('mdp',$mdp);
@@ -374,6 +373,16 @@ class Utilisateur
   public static function trouverAdmin(){
     $req=MonPdo::getInstance()->prepare("select * from utilisateur where admin=1");
     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+    $req->execute();
+    $lesResultats=$req->fetchAll();
+    return $lesResultats;
+  }
+
+  public static function trouverInscrit($mail,$mdp){
+    $req=MonPdo::getInstance()->prepare("select * from utilisateur where mail=:mail and mdp=:mdp");
+    $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'utilisateur');
+    $req->bindParam(':mail',$mail);
+    $req->bindParam(':mdp',$mdp);
     $req->execute();
     $leResultat=$req->fetch();
     return $leResultat;
