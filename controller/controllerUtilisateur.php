@@ -85,7 +85,7 @@ $action = $_GET["action"] ;
                 Utilisateur::ajouterUtilisateur($Utilisateur);
                 $ip = Utilisateur::addresseIP();
                 Utilisateur::changeraddresseIPInscrit($ip,$_POST["mail"],MD5($_POST["mdp1"]));
-                include("controller/controllerMail");
+                include("controller/controllerMail.php");
                 include("vue/Attente.php");
             }
             else{
